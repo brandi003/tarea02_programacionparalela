@@ -1,12 +1,12 @@
 #include <global.hh>
-
+#include <iostream>
 #include <RandomUnifStream.hpp>
 #include <Timing.hpp>
 #include <MatrixToMem.hpp>
 
 /////////////////////////////////////////////////////////////////////////////////
 //   Usage:
-//           ./program_name  ...a....
+//           ./program_name  .......
 //
 //   Description:
 //                ...................
