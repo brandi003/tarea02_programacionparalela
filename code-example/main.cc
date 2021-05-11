@@ -1,7 +1,6 @@
 #include <global.hh>
 #include <algorithm>
 #include <functional>
-#include <array>
 #include <iostream>
 #include <string_view>
 #include <RandomUnifStream.hpp>
