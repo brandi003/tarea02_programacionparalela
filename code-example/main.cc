@@ -1,6 +1,5 @@
 #include <global.hh>
 #include <algorithm>
-#include <iostream>
 #include <string_view>
 #include <RandomUnifStream.hpp>
 #include <Timing.hpp>
