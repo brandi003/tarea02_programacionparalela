@@ -49,7 +49,7 @@ int main(int argc, char** argv)
 	std::cout << "Time to transfer to main memory: " << timer0.elapsed() << std::endl;
 	
 	timer1.start();
-	std::sort(m1._matrixInMemory, m1._matrixInMemory + m1._nfil);
+	//std::sort(m1._matrixInMemory, m1._matrixInMemory + m1._nfil);
 	timer1.stop();
 	
 	std::cout << "Time to sort in main memory: " << timer1.elapsed() << std::endl;
@@ -65,7 +65,6 @@ int main(int argc, char** argv)
 	
 //////////////////////
 	//aquiempieza mi basura
-	MatrixToMem m1(fileName);
 std::cout << "tamaño arreglo:  " << m1._nfil << std::endl;
 __m128i Registro1,Registro2;
 //for (size_t i=0;i< m1._nfil;i+=2){
