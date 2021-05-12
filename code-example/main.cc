@@ -66,8 +66,8 @@ int main(int argc, char** argv)
 
 	__m128i Registro1,Registro2;
 	for (size_t i=0;i< sizeof(m1._matrixInMemory);i+=8){
-		//Registro1= _mm_load_si128(&m1._matrixInMemory[i]);
-		//Registro2= _mm_load_si128(&m1._matrixInMemory[i+4]);
+		Registro1= _mm_load_si128(&m1._matrixInMemory[i]);
+		Registro2= _mm_load_si128(&m1._matrixInMemory[i+4]);
 		//std::cout <<  Registro1 << std::endl;
 		//std::cout <<  Registro2 << std::endl;
 	}
