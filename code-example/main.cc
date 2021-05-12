@@ -3,35 +3,8 @@
 #include <RandomUnifStream.hpp>
 #include <Timing.hpp>
 #include <MatrixToMem.hpp>
- #ifndef __EMMINTRIN_H
- #define __EMMINTRIN_H
-  
- #include <xmmintrin.h>
-  
- typedef double __m128d __attribute__((__vector_size__(16), __aligned__(16)));
- typedef long long __m128i __attribute__((__vector_size__(16), __aligned__(16)));
-  
- typedef double __m128d_u __attribute__((__vector_size__(16), __aligned__(1)));
- typedef long long __m128i_u __attribute__((__vector_size__(16), __aligned__(1)));
-  
- /* Type defines.  */
- typedef double __v2df __attribute__ ((__vector_size__ (16)));
- typedef long long __v2di __attribute__ ((__vector_size__ (16)));
- typedef short __v8hi __attribute__((__vector_size__(16)));
- typedef char __v16qi __attribute__((__vector_size__(16)));
-  
- /* Unsigned types */
- typedef unsigned long long __v2du __attribute__ ((__vector_size__ (16)));
- typedef unsigned short __v8hu __attribute__((__vector_size__(16)));
- typedef unsigned char __v16qu __attribute__((__vector_size__(16)));
-  
- /* We need an explicitly signed variant for char. Note that this shouldn't
-  * appear in the interface though. */
- typedef signed char __v16qs __attribute__((__vector_size__(16)));
-  
- /* Define the default attributes for the functions in this file. */
- #define __DEFAULT_FN_ATTRS __attribute__((__always_inline__, __nodebug__, __target__("sse2"), __min_vector_width__(128)))
- #define __DEFAULT_FN_ATTRS_MMX __attribute__((__always_inline__, __nodebug__, __target__("mmx,sse2"), __min_vector_width__(64)))
+#include <immintrin.h>
+
 /////////////////////////////////////////////////////////////////////////////////
 //   Usage:
 //           ./program_name  .......
@@ -85,27 +58,22 @@ int main(int argc, char** argv)
 	for(size_t i=0; i< 5; i++){		
 		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
-static __inline__ __m128i __DEFAULT_FN_ATTRS 
-_mm_loadu_si32(void const *__a)
- {
-   struct __loadu_si32 {
-     int __v;
-   } __attribute__((__packed__, __may_alias__));
-   int __u = ((const struct __loadu_si32*)__a)->__v;
-   return __extension__ (__m128i)(__v4si){__u, 0, 0, 0};
- }
+
+	
 	
 //////////////////////
 	//aquiempieza mi basura
 std::cout <<  m1._nfil << std::endl;
-	//__m128i Registro1,Registro2;
-	for (size_t i=0;i< m1._nfil;i+=8){
-		//auto Registro1= _mm_loadl_epi32(&m1._matrixInMemory[i]);
-		//auto Registro2= _mm_loadu_si32(&m1._matrixInMemory[i+4]);
+__m128i Registro1,Registro2;
+for (size_t i=0;i< m1._nfil;i+=8){
+	//auto prueba = &m1._matrixInMemory[i];
 
-		std::cout <<  _mm_loadu_si32(&m1._matrixInMemory[i]) << std::endl;
-		//std::cout <<  Registro1 << std::endl;
-	}
+	Registro1= _mm_loadu_si32(&m1._matrixInMemory[i]);
+	//Registro2= _mm_load_si128(&m1._matrixInMemory[i+4]);
+
+	//std::cout <<  &m1._matrixInMemory[i] << std::endl;
+	std::cout <<  Registro1 << std::endl;
+}
 
 
 
