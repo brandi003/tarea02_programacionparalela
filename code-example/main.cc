@@ -72,7 +72,7 @@ std::cout << "tamaño arreglo:  " << m1._nfil << std::endl;
 __m128i Registro1,Registro2;
 
 Registro1=_mm_set_epi32(m1._matrixInMemory[0],m1._matrixInMemory[1], m1._matrixInMemory[2], m1._matrixInMemory[3]);
-uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (32, 128);
+uint32_t vectorOut1[4];
 _mm_storeu_si64(vectorOut1,Registro1);
 std::cout << vectorOut1[0] <<std::endl;
 std::cout << vectorOut1[1] <<std::endl;
