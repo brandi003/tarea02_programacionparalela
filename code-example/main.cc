@@ -71,7 +71,8 @@ int main(int argc, char** argv)
 std::cout << "tamaño arreglo:  " << m1._nfil << std::endl;
 __m128i Registro1,Registro2;
 Registro1= _mm_set1_epi32 (m1._matrixInMemory[0]);
-uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
+uint32_t vectorOut1[2];
+_mm_storeu_si64(vectorOut1,Registro1);
 std::cout << vectorOut1[0] <<std::endl;
 std::cout << vectorOut1[1] <<std::endl;
 /*for (size_t i=0;i< m1._nfil;i+=2){
