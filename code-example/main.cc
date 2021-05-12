@@ -68,13 +68,35 @@ int main(int argc, char** argv)
 	//aquiempieza mi basura
 std::cout << "tamaño arreglo:  " << m1._nfil << std::endl;
 __m128i Registro1,Registro2;
-//for (size_t i=0;i< m1._nfil;i+=2){
+/*for (size_t i=0;i< m1._nfil;i+=2){
 	Registro1= _mm_loadu_si64(&m1._matrixInMemory[1]);
 	Registro2= _mm_loadu_si64(&m1._matrixInMemory[3]);
 
-//}
+}*/
+for (size_t i=0;i< m1._nfil;i+=2){
+	Registro1= _mm_loadu_si64(&m1._matrixInMemory[i]);
+	for (size_t j=0;i<m1._fil;i+=2){
+		Registro2= _mm_loadu_si64(&m1._matrixInMemory[j]);
+		__m128i result =_mm_cmpgt_epi32(Registro1,Registro2);
+		_mm_storeu_si64(vectorOut1,result);
+		if(!vectorOut1[0]==0){
+			std:cout << "swap" << std:endl;
+		}
+		if(!vectorOut1[1]==0){
+			std:cout << "swap" << std:endl;
+		}
+	}
+}
+/*
+for i in range(len(lista)):
+	for j in range(len(lista)):
+		aux=lista[j]
+		if(lista[i]<lista[j]):
+			lista[j]=lista[i]
+			lista[i]=aux*/
 
 //__m128i result =_mm_cmpgt_epi64(Registro1,Registro2);
+/*
 uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
 _mm_storeu_si64(vectorOut1,Registro1);
 uint32_t *vectorOut2 = (uint32_t*)aligned_alloc (64, 8);
@@ -94,7 +116,7 @@ __m128i result =_mm_cmpgt_epi32(Registro1,Registro2);
 _mm_storeu_si64(vectorOut1,result);
 std::cout << "---------------" <<std::endl;
 std::cout << vectorOut1[0] <<std::endl;
-std::cout << vectorOut1[1] <<std::endl;
+std::cout << vectorOut1[1] <<std::endl;*/
 	return(EXIT_SUCCESS);
 }
 
