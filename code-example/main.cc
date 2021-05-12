@@ -81,6 +81,11 @@ uint32_t *vectorOut2 = (uint32_t*)aligned_alloc (32, 8);
 _mm_storeu_si64(vectorOut2,Registro2);
 std::cout <<  vectorOut1[0] << "--" << vectorOut2[0] << std::endl;
 std::cout <<  vectorOut1[1] << "--" << vectorOut2[1] << std::endl;
+__m128i result =_mm_cmpgt_epi64(Registro1,Registro2);
+_mm_storeu_si64(vectorOut1,Registro1);
+std::cout << "---------------" <<std::endl;
+std::cout << vectorOut1[0] <<std::endl;
+std::cout << vectorOut1[1] <<std::endl;
 	return(EXIT_SUCCESS);
 }
 
