@@ -76,7 +76,7 @@ for (size_t i=0;i< m1._nfil;i+=4){
 }
 
 uint32_t *vectorOut = (uint32_t*)aligned_alloc (16, sizeof(uint32_t)*2);
-_mm_storeu_si32(vectorOut,Registro1)
+_mm_storeu_si64(vectorOut,Registro1)
 std::cout <<  vectorOut[0] << std::endl;
 std::cout <<  vectorOut[1] << std::endl;
 
