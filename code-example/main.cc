@@ -58,6 +58,7 @@ int main(int argc, char** argv)
 	for(size_t i=0; i< 5; i++){		
 		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
+	std::cout << "-------------------------------"<< std::endl;
 
 	
 	
