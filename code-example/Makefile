@@ -10,7 +10,7 @@ DIR_OBJ=objs
 SOURCES=$(wildcard *.cc)
 OBJECTS=$(patsubst %.cc,$(DIR_OBJ)/%.o,$(SOURCES))
 
-INTRINSICS=-msse2 -mavx -sse2
+INTRINSICS=-msse2 -mavx
 
 INCLUDES =-I. -I./include
 CPPFLAGS =-std=c++17  -Wno-deprecated $(INTRINSICS) 
