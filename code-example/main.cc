@@ -5,8 +5,6 @@
 #include <MatrixToMem.hpp>
 #include <emmintrin.h>
 #include <immintrin.h>
-#ifndef __EMMINTRIN_H
-#define __EMMINTRIN_H
 #include <xmmintrin.h>
 typedef long long __m128i __attribute__((__vector_size__(16), __aligned__(16)));
 
