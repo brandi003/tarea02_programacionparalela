@@ -6,6 +6,7 @@
 #include <immintrin.h>
 #include <emmintrin.h>
 
+
 /////////////////////////////////////////////////////////////////////////////////
 //   Usage:
 //           ./program_name  .......
@@ -73,7 +74,8 @@ __m128i Registro1,Registro2;
 
 //}
 
-__m128i result =_mm_cmpgt_epi64(Registro1,Registro2);
+auto result =_mm_cmpgt_epi64(Registro1,Registro2);
+std::cout << result << std::endl;
 uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (32, 8);
 _mm_storeu_si64(vectorOut1,result);
 std::cout <<  vectorOut1[0] << std::endl;
