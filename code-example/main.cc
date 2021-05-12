@@ -70,7 +70,7 @@ int main(int argc, char** argv)
 	//aquiempieza mi basura
 std::cout << "tamaño arreglo:  " << m1._nfil << std::endl;
 __m128i Registro1,Registro2;
-Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
+Registro1= _mm_set1_epi32 (m1._matrixInMemory[0]);
 uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
 std::cout << vectorOut1[0] <<std::endl;
 std::cout << vectorOut1[1] <<std::endl;
