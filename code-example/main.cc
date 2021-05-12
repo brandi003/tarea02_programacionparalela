@@ -25,7 +25,7 @@ void uso(std::string pname)
 
 void mostrar_registro(__m128i registro){
 	uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 128);
-	_mm_storeu_si64(vectorOut1,result);
+	_mm_storeu_si64(vectorOut1,registro);
 	std::cout << "---------------" <<std::endl;
 	std::cout << vectorOut1[0] <<std::endl;
 	std::cout << vectorOut1[1] <<std::endl;
