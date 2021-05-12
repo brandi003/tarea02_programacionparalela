@@ -78,7 +78,8 @@ uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (32, 8);
 _mm_storeu_si64(vectorOut1,result);
 std::cout <<  vectorOut1[0] << std::endl;
 std::cout <<  vectorOut1[1] << std::endl;
-
+std::cout <<  vectorOut1[2] << std::endl;
+std::cout <<  vectorOut1[3] << std::endl;
 	return(EXIT_SUCCESS);
 }
 
