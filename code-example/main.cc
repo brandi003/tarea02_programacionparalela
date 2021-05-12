@@ -107,6 +107,10 @@ for (size_t i=0;i< m1._nfil;i+=1){
 			Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
 			Registro2= _mm_loadu_si64(&m1._matrixInMemory[j]);
 		}
+		if(!(int)vectorOut1[0]==0 && !(int)vectorOut1[1]==0){
+			j=j-2;
+			continue;
+		}
 		if(!(int)vectorOut1[1]==0){
 			auto aux=m1._matrixInMemory[i+1];
 			m1._matrixInMemory[i+1]=m1._matrixInMemory[j+1];
@@ -114,9 +118,7 @@ for (size_t i=0;i< m1._nfil;i+=1){
 			Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
 			Registro2= _mm_loadu_si64(&m1._matrixInMemory[j]);
 		}
-		if(!(int)vectorOut1[0]==0 && !(int)vectorOut1[1]==0){
-			j=j-2;
-		}
+		
 	}
 }
 /*
