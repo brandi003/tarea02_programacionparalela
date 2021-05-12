@@ -65,13 +65,13 @@ int main(int argc, char** argv)
 	//aquiempieza mi basura
 
 	__m128i Registro1,Registro2;
-	/*
+	
 	for (size_t i=0;i<m1._matrixInMemory.lenght;i+=8){
-		Registro1= _mm_load_si128(&m1._matrixInMemory[i]);
-		Registro2= _mm_load_si128(&m1._matrixInMemory[i+4]);
-		std::cout <<  Registro1 << std::endl;
-		std::cout <<  Registro2 << std::endl;
-	}*/
+		//Registro1= _mm_load_si128(&m1._matrixInMemory[i]);
+		//Registro2= _mm_load_si128(&m1._matrixInMemory[i+4]);
+		//std::cout <<  Registro1 << std::endl;
+		//std::cout <<  Registro2 << std::endl;
+	}
 
 
 
