@@ -69,7 +69,7 @@ std::cout <<  m1._nfil << std::endl;
 		//auto Registro1= _mm_loadl_epi32(&m1._matrixInMemory[i]);
 		//auto Registro2= _mm_loadu_si32(&m1._matrixInMemory[i+4]);
 
-		std::cout <<  _mm_loadl_epi32(&m1._matrixInMemory[i]) << std::endl;
+		std::cout <<  _mm_loadu_si32(&m1._matrixInMemory[i]) << std::endl;
 		//std::cout <<  Registro1 << std::endl;
 	}
 
