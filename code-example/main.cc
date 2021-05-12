@@ -3,9 +3,35 @@
 #include <RandomUnifStream.hpp>
 #include <Timing.hpp>
 #include <MatrixToMem.hpp>
-#include <xmmintrin.h>
-typedef long long __m128i __attribute__((__vector_size__(16), __aligned__(16)));
-
+ #ifndef __EMMINTRIN_H
+ #define __EMMINTRIN_H
+  
+ #include <xmmintrin.h>
+  
+ typedef double __m128d __attribute__((__vector_size__(16), __aligned__(16)));
+ typedef long long __m128i __attribute__((__vector_size__(16), __aligned__(16)));
+  
+ typedef double __m128d_u __attribute__((__vector_size__(16), __aligned__(1)));
+ typedef long long __m128i_u __attribute__((__vector_size__(16), __aligned__(1)));
+  
+ /* Type defines.  */
+ typedef double __v2df __attribute__ ((__vector_size__ (16)));
+ typedef long long __v2di __attribute__ ((__vector_size__ (16)));
+ typedef short __v8hi __attribute__((__vector_size__(16)));
+ typedef char __v16qi __attribute__((__vector_size__(16)));
+  
+ /* Unsigned types */
+ typedef unsigned long long __v2du __attribute__ ((__vector_size__ (16)));
+ typedef unsigned short __v8hu __attribute__((__vector_size__(16)));
+ typedef unsigned char __v16qu __attribute__((__vector_size__(16)));
+  
+ /* We need an explicitly signed variant for char. Note that this shouldn't
+  * appear in the interface though. */
+ typedef signed char __v16qs __attribute__((__vector_size__(16)));
+  
+ /* Define the default attributes for the functions in this file. */
+ #define __DEFAULT_FN_ATTRS __attribute__((__always_inline__, __nodebug__, __target__("sse2"), __min_vector_width__(128)))
+ #define __DEFAULT_FN_ATTRS_MMX __attribute__((__always_inline__, __nodebug__, __target__("mmx,sse2"), __min_vector_width__(64)))
 /////////////////////////////////////////////////////////////////////////////////
 //   Usage:
 //           ./program_name  .......
