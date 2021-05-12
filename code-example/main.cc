@@ -59,7 +59,8 @@ int main(int argc, char** argv)
 	for(size_t i=0; i< 5; i++){		
 		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
-static __inline__ __m128i __DEFAULT_FN_ATTRS _mm_loadu_si32(void const *__a)
+static __inline__ __m128i __DEFAULT_FN_ATTRS 
+_mm_loadu_si32(void const *__a)
  {
    struct __loadu_si32 {
      int __v;
