@@ -3,7 +3,7 @@
 #include <RandomUnifStream.hpp>
 #include <Timing.hpp>
 #include <MatrixToMem.hpp>
-#include <immintrin.h>
+#include <emmintrin.h>
 
 /////////////////////////////////////////////////////////////////////////////////
 //   Usage:
