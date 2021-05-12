@@ -75,12 +75,12 @@ __m128i Registro1,Registro2;
 
 
 
-uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (4, 32);
+uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (32, 32);
 std::cout << "tamaño del vectorOut1: " << sizeof(vectorOut1) << std::endl;
 _mm_storeu_si64(vectorOut1,Registro1);
 //uint32_t *vectorOut2 = (uint32_t*)aligned_alloc (32, sizeof(uint32_t)*2);
 //_mm_storeu_si64(vectorOut2,Registro2);
-std::cout << "tamaño del vectorOut1: " << sizeof(uint32_t) << std::endl;
+std::cout << "tamaño del vectorOut1: " << sizeof(double) << std::endl;
 std::cout <<  vectorOut1[0] << std::endl;
 std::cout <<  vectorOut1[1] << std::endl;
 std::cout <<  vectorOut1[2] << std::endl;
