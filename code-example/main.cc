@@ -70,11 +70,12 @@ int main(int argc, char** argv)
 	//aquiempieza mi basura
 std::cout << "tamaño arreglo:  " << m1._nfil << std::endl;
 __m128i Registro1,Registro2;
+/*
 Registro1= _mm_set1_epi32 (m1._matrixInMemory[0]);
 uint32_t vectorOut1[2];
 _mm_storeu_si64(vectorOut1,Registro1);
 std::cout << vectorOut1[0] <<std::endl;
-std::cout << vectorOut1[1] <<std::endl;
+std::cout << vectorOut1[1] <<std::endl;*/
 /*for (size_t i=0;i< m1._nfil;i+=2){
 	Registro1= _mm_loadu_si64(&m1._matrixInMemory[1]);
 	Registro2= _mm_loadu_si64(&m1._matrixInMemory[3]);
@@ -86,7 +87,7 @@ for (size_t i=0;i< m1._nfil;i+=1){
 	for (size_t j=0;j<m1._nfil;j+=2){
 		Registro2= _mm_loadu_si64(&m1._matrixInMemory[j]);
 		__m128i result =_mm_cmpgt_epi32(Registro1,Registro2);
-		uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
+		uint32_t vectorOut1[2];
 		_mm_storeu_si64(vectorOut1,result);
 		if((int)vectorOut1[0]==0){
 			auto aux=m1._matrixInMemory[i];
