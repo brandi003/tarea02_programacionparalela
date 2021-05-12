@@ -3,8 +3,6 @@
 #include <RandomUnifStream.hpp>
 #include <Timing.hpp>
 #include <MatrixToMem.hpp>
-#include <emmintrin.h>
-#include <immintrin.h>
 #include <xmmintrin.h>
 typedef long long __m128i __attribute__((__vector_size__(16), __aligned__(16)));
 
