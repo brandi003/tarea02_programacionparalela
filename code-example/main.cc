@@ -5,7 +5,10 @@
 #include <MatrixToMem.hpp>
 #include <emmintrin.h>
 #include <immintrin.h>
+#ifndef __EMMINTRIN_H
+#define __EMMINTRIN_H
 #include <xmmintrin.h>
+typedef long long __m128i __attribute__((__vector_size__(16), __aligned__(16)));
 
 /////////////////////////////////////////////////////////////////////////////////
 //   Usage:
@@ -61,7 +64,14 @@ int main(int argc, char** argv)
 		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
 
-	
+_mm_loadu_si32(void const *__a)
+ {
+   struct __loadu_si32 {
+     int __v;
+   } __attribute__((__packed__, __may_alias__));
+   int __u = ((const struct __loadu_si32*)__a)->__v;
+   return __extension__ (__m128i)(__v4si){__u, 0, 0, 0};
+ }
 	
 //////////////////////
 	//aquiempieza mi basura
@@ -71,7 +81,7 @@ std::cout <<  m1._nfil << std::endl;
 		//auto Registro1= _mm_loadl_epi32(&m1._matrixInMemory[i]);
 		//auto Registro2= _mm_loadu_si32(&m1._matrixInMemory[i+4]);
 
-		std::cout <<  _mm_loadu_si16(&m1._matrixInMemory[i]) << std::endl;
+		std::cout <<  _mm_loadu_si32(&m1._matrixInMemory[i]) << std::endl;
 		//std::cout <<  Registro1 << std::endl;
 	}
 
