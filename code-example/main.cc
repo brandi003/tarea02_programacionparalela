@@ -72,6 +72,13 @@ std::cout << "tamaño arreglo:  " << m1._nfil << std::endl;
 __m128i Registro1,Registro2;
 
 Registro1=_mm_set_epi32(m1._matrixInMemory[0],m1._matrixInMemory[1], m1._matrixInMemory[2], m1._matrixInMemory[3]);
+uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (32, 128);
+_mm_storeu_si64(vectorOut1,Registro1);
+std::cout << vectorOut1[0] <<std::endl;
+std::cout << vectorOut1[1] <<std::endl;
+std::cout << vectorOut1[2] <<std::endl;
+std::cout << vectorOut1[3] <<std::endl;
+
 /*for (size_t i=0;i< m1._nfil;i+=2){
 	Registro1= _mm_loadu_si64(&m1._matrixInMemory[1]);
 	Registro2= _mm_loadu_si64(&m1._matrixInMemory[3]);
@@ -103,10 +110,11 @@ std::cout << m1._nfil << std::endl;
 	}
 }*/
 
-for(size_t i=0; i< m1._nfil; i++){		
+/*for(size_t i=0; i< m1._nfil; i++){		
 		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
 std::cout << "-------------------------------"<< std::endl;
+*/
 /*
 for i in range(len(lista)):
 	for j in range(len(lista)):
