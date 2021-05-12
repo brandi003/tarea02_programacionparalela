@@ -91,7 +91,7 @@ if(vectorOut1[1]<vectorOut2[1]){
 }
 
 __m128i result =_mm_cmpgt_epi64(Registro1,Registro2);
-_mm_storeu_si64(vectorOut1,result);
+_mm_storeu_sie32(vectorOut1,result);
 std::cout << "---------------" <<std::endl;
 std::cout << vectorOut1[0] <<std::endl;
 std::cout << vectorOut1[1] <<std::endl;
