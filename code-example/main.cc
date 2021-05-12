@@ -1,4 +1,5 @@
 #include <global.hh>
+#include <stdio.h>
 #include <algorithm>
 #include <RandomUnifStream.hpp>
 #include <Timing.hpp>
