@@ -75,7 +75,7 @@ __m128i Registro1,Registro2;
 }*/
 for (size_t i=0;i< m1._nfil;i+=2){
 	Registro1= _mm_loadu_si64(&m1._matrixInMemory[i]);
-	for (size_t j=0;i<m1._fil;i+=2){
+	for (size_t j=0;i<m1._nfil;i+=2){
 		Registro2= _mm_loadu_si64(&m1._matrixInMemory[j]);
 		__m128i result =_mm_cmpgt_epi32(Registro1,Registro2);
 		_mm_storeu_si64(vectorOut1,result);
