@@ -23,6 +23,7 @@ void uso(std::string pname)
 	exit(EXIT_FAILURE);
 }
 
+
 int main(int argc, char** argv)
 {
 
