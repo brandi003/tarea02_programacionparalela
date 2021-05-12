@@ -76,7 +76,7 @@ __m128i Registro1,Registro2;
 
 }*/
 std::cout << m1._nfil << std::endl;
-for (size_t i=0;i< m1._nfil;i+=2){
+for (size_t i=0;i< m1._nfil;i+=1){
 	Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
 	for (size_t j=0;j<m1._nfil;j+=2){
 		Registro2= _mm_loadu_si64(&m1._matrixInMemory[j]);
