@@ -81,10 +81,10 @@ for (size_t i=0;i< m1._nfil;i+=2){
 		uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
 		_mm_storeu_si64(vectorOut1,result);
 		std::cout << vectorOut1[0] << std::endl;
-		if(!vectorOut1[0]==0){
+		if(!(int)vectorOut1[0]==0){
 			std::cout << "swap" << std::endl;
 		}
-		if(!vectorOut1[1]==0){
+		if(!(int)vectorOut1[1]==0){
 			std::cout << "swap" << std::endl;
 		}
 	}
