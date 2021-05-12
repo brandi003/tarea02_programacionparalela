@@ -73,9 +73,9 @@ __m128i Registro1,Registro2;
 
 //}
 
-Registro1 =_mm_move_epi64(Registro1);
+Registro2 =_mm_move_epi64(Registro1);
 uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (32, 8);
-_mm_storeu_si64(vectorOut1,Registro1);
+_mm_storeu_si64(vectorOut1,Registro2);
 std::cout <<  vectorOut1[0] << std::endl;
 std::cout <<  vectorOut1[1] << std::endl;
 
