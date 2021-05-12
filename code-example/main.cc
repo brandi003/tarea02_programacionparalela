@@ -70,18 +70,20 @@ __m128i Registro1,Registro2;
 	//auto prueba = &m1._matrixInMemory[i];
 
 	Registro1= _mm_loadu_si64(&m1._matrixInMemory[0]);
-	//Registro2= _mm_loadu_si64(&m1._matrixInMemory[i+2]);
+	Registro2= _mm_loadu_si64(&m1._matrixInMemory[2]);
 
 	//std::cout <<  &m1._matrixInMemory[i] << std::endl;
 	//std::cout <<  Registro1 << std::endl;
 //}
 
-uint32_t *vectorOut = (uint32_t*)aligned_alloc (32, sizeof(uint32_t)*2);
-_mm_storeu_si64(vectorOut,Registro1);
-std::cout <<  vectorOut[0] << std::endl;
-std::cout <<  vectorOut[1] << std::endl;
-std::cout <<  vectorOut[2] << std::endl;
-std::cout <<  vectorOut[3] << std::endl;
+uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (32, sizeof(uint32_t)*2);
+_mm_storeu_si64(vectorOut1,Registro1);
+uint32_t *vectorOut2 = (uint32_t*)aligned_alloc (32, sizeof(uint32_t)*2);
+_mm_storeu_si64(vectorOut2,Registro2);
+std::cout <<  vectorOut1[0] << std::endl;
+std::cout <<  vectorOut1[1] << std::endl;
+std::cout <<  vectorOut2[0] << std::endl;
+std::cout <<  vectorOut2[1] << std::endl;
 
 	return(EXIT_SUCCESS);
 }
