@@ -84,12 +84,15 @@ for (size_t i=0;i< m1._nfil;i+=2){
 		__m128i result =_mm_cmpgt_epi32(Registro1,Registro2);
 		uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
 		_mm_storeu_si64(vectorOut1,result);
-		//std::cout << typeof(vectorOut1[0]) << std::endl;
 		if(!(int)vectorOut1[0]==0){
-			std::cout << "swap" << std::endl;
+			auto aux=m1._matrixInMemory[i];
+			m1._matrixInMemory[i]=m1._matrixInMemory[j];
+			m1._matrixInMemory[j]=aux;
 		}
 		if(!(int)vectorOut1[1]==0){
-			std::cout << "swap" << std::endl;
+			auto aux=m1._matrixInMemory[i];
+			m1._matrixInMemory[i]=m1._matrixInMemory[j];
+			m1._matrixInMemory[j]=aux;
 		}
 	}
 }
