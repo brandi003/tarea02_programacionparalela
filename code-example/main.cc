@@ -29,6 +29,8 @@ void mostrar_registro(__m128i registro){
 	std::cout << "---------------" <<std::endl;
 	std::cout << vectorOut1[0] <<std::endl;
 	std::cout << vectorOut1[1] <<std::endl;
+	std::cout << vectorOut1[2] <<std::endl;
+	std::cout << vectorOut1[3] <<std::endl;
 	std::cout << "---------------" <<std::endl;
 
 }
