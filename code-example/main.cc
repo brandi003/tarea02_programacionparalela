@@ -23,6 +23,15 @@ void uso(std::string pname)
 	exit(EXIT_FAILURE);
 }
 
+void mostrar_registro(__m128i registro){
+	uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 128);
+	_mm_storeu_si64(vectorOut1,result);
+	std::cout << "---------------" <<std::endl;
+	std::cout << vectorOut1[0] <<std::endl;
+	std::cout << vectorOut1[1] <<std::endl;
+	std::cout << "---------------" <<std::endl;
+
+}
 
 int main(int argc, char** argv)
 {
@@ -105,8 +114,15 @@ for (size_t i=0;i< m1._nfil;i+=1){
 		}
 	}
 }
+
+Registro1= _mm_set1_epi32 (m1._matrixInMemory[0]);
+mostrar_registro(Registro1);
+
+
+
+
 for(size_t i=0; i< m1._nfil; i++){		
-		std::cout <<  m1._matrixInMemory[i] << std::endl;
+		//std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
 std::cout << "-------------------------------"<< std::endl;
 /*
