@@ -79,10 +79,6 @@ void MatrixToMem::loadInMemory()
 	_matrixFile.close();
 }
 
-int MatrixToMem::size(){
-	_matrixInMemory.lenght();
-}
-
 
 
 #endif
