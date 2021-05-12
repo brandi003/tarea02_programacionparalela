@@ -70,13 +70,16 @@ int main(int argc, char** argv)
 	//aquiempieza mi basura
 std::cout << "tamaño arreglo:  " << m1._nfil << std::endl;
 __m128i Registro1,Registro2;
+
+Registro1=_mm_set_epi32(m1._matrixInMemory[0],m1._matrixInMemory[1], m1._matrixInMemory[2], m1._matrixInMemory[3])
 /*for (size_t i=0;i< m1._nfil;i+=2){
 	Registro1= _mm_loadu_si64(&m1._matrixInMemory[1]);
 	Registro2= _mm_loadu_si64(&m1._matrixInMemory[3]);
 
 }*/
 std::cout << m1._nfil << std::endl;
-for (size_t i=0;i< m1._nfil;i+=1){
+
+/*for (size_t i=0;i< m1._nfil;i+=1){
 	Registro1= _mm_loadu_si64(&m1._matrixInMemory[i]);
 	for (size_t j=0;j<m1._nfil;j+=2){
 		Registro2= _mm_loadu_si64(&m1._matrixInMemory[j]);
@@ -98,7 +101,8 @@ for (size_t i=0;i< m1._nfil;i+=1){
 			Registro2= _mm_loadu_si64(&m1._matrixInMemory[j]);
 		}
 	}
-}
+}*/
+
 for(size_t i=0; i< m1._nfil; i++){		
 		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
