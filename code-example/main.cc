@@ -65,7 +65,7 @@ int main(int argc, char** argv)
 	//aquiempieza mi basura
 std::cout <<  m1._nfil << std::endl;
 	__m128i Registro1,Registro2;
-	for (size_t i=0;i< sizeof(m1._matrixInMemory);i+=8){
+	for (size_t i=0;i< m1._nfil;i+=8){
 		//Registro1= _mm_load_si128(&m1._matrixInMemory[i]);
 		//Registro2= _mm_load_si128(&m1._matrixInMemory[i+4]);
 		
