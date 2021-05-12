@@ -64,11 +64,11 @@ int main(int argc, char** argv)
 //////////////////////
 	//aquiempieza mi basura
 std::cout <<  m1._nfil << std::endl;
-//__m128i Registro1,Registro2;
+__m128i Registro1,Registro2;
 for (size_t i=0;i< m1._nfil;i+=8){
 	//auto prueba = &m1._matrixInMemory[i];
 
-	auto Registro1= _mm_loadu_si64(&m1._matrixInMemory[i]);
+	Registro1= _mm_loadu_si64(&m1._matrixInMemory[i]);
 	//Registro2= _mm_load_si128(&m1._matrixInMemory[i+4]);
 
 	//std::cout <<  &m1._matrixInMemory[i] << std::endl;
