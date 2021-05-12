@@ -59,7 +59,7 @@ int main(int argc, char** argv)
 		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
 
-	Timing timer0, timer1;
+	
 	
 //////////////////////
 	//aquiempieza mi basura
