@@ -3,8 +3,8 @@
 #include <RandomUnifStream.hpp>
 #include <Timing.hpp>
 #include <MatrixToMem.hpp>
- #ifndef __EMMINTRIN_H;
- #define __EMMINTRIN_H;
+ #ifndef __EMMINTRIN_H
+ #define __EMMINTRIN_H
   
  #include <xmmintrin.h>
   
