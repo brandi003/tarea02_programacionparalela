@@ -78,6 +78,7 @@ for (size_t i=0;i< m1._nfil;i+=2){
 	for (size_t j=0;i<m1._nfil;i+=2){
 		Registro2= _mm_loadu_si64(&m1._matrixInMemory[j]);
 		__m128i result =_mm_cmpgt_epi32(Registro1,Registro2);
+		uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
 		_mm_storeu_si64(vectorOut1,result);
 		if(!vectorOut1[0]==0){
 			std::cout << "swap" << std::endl;
