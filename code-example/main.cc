@@ -65,6 +65,7 @@ int main(int argc, char** argv)
 	
 //////////////////////
 	//aquiempieza mi basura
+	MatrixToMem m1(fileName);
 std::cout << "tamaño arreglo:  " << m1._nfil << std::endl;
 __m128i Registro1,Registro2;
 //for (size_t i=0;i< m1._nfil;i+=2){
