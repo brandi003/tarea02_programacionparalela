@@ -66,14 +66,14 @@ int main(int argc, char** argv)
 	//aquiempieza mi basura
 std::cout << "tamaño arreglo:  " << m1._nfil << std::endl;
 __m128i Registro1,Registro2;
-//for (size_t i=0;i< m1._nfil;i+=4){
-	//auto prueba = &m1._matrixInMemory[i];
-
+//for (size_t i=0;i< m1._nfil;i+=2){
 	Registro1= _mm_loadu_si64(&m1._matrixInMemory[0]);
-	Registro2= _mm_loadu_si64(&m1._matrixInMemory[2]);
-	
+	Registro2= _mm_loadu_si64(&m1._matrixInMemory[0]);
+
 //}
-/*
+
+_mm_move_epi64(Registro1)
+
 uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (32, sizeof(uint32_t)*2);
 _mm_storeu_si64(vectorOut1,Registro1);
 uint32_t *vectorOut2 = (uint32_t*)aligned_alloc (32, sizeof(uint32_t)*2);
@@ -81,7 +81,7 @@ _mm_storeu_si64(vectorOut2,Registro2);
 std::cout <<  vectorOut1[0] << std::endl;
 std::cout <<  vectorOut1[1] << std::endl;
 std::cout <<  vectorOut2[0] << std::endl;
-std::cout <<  vectorOut2[1] << std::endl;*/
+std::cout <<  vectorOut2[1] << std::endl;
 
 	return(EXIT_SUCCESS);
 }
