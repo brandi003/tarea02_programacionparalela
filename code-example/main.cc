@@ -66,7 +66,7 @@ int main(int argc, char** argv)
 std::cout <<  m1._nfil << std::endl;
 	//__m128i Registro1,Registro2;
 	for (size_t i=0;i< m1._nfil;i+=8){
-		auto Registro1= _mm_loadu_si32(&m1._matrixInMemory[i]);
+		auto Registro1= _mm_loadl_epi32(&m1._matrixInMemory[i]);
 		auto Registro2= _mm_loadu_si32(&m1._matrixInMemory[i+4]);
 
 		std::cout <<  Registro2 << std::endl;
