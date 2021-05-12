@@ -80,6 +80,7 @@ for (size_t i=0;i< m1._nfil;i+=2){
 		__m128i result =_mm_cmpgt_epi32(Registro1,Registro2);
 		uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
 		_mm_storeu_si64(vectorOut1,result);
+		std::cout << vectorOut1[0] << std::endl;
 		if(!vectorOut1[0]==0){
 			std::cout << "swap" << std::endl;
 		}
