@@ -64,7 +64,7 @@ int main(int argc, char** argv)
 //////////////////////
 	//aquiempieza mi basura
 
-	MatrixToMem m1(fileName);
+	/*MatrixToMem m1(fileName);
 
 	__m128i Registro1,Registro2;
 
@@ -73,7 +73,7 @@ int main(int argc, char** argv)
 		Registro2= _mm_load_si128(&m1._matrixInMemory[i+4]);
 		std::cout <<  Registro1 << std::endl;
 		std::cout <<  Registro2 << std::endl;
-	}
+	}*/
 
 
 
