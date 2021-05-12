@@ -72,7 +72,7 @@ for (size_t i=0;i< m1._nfil;i+=8){
 	//Registro2= _mm_load_si128(&m1._matrixInMemory[i+4]);
 
 	//std::cout <<  &m1._matrixInMemory[i] << std::endl;
-	std::cout <<  Registro1 << std::endl;
+	//std::cout <<  Registro1 << std::endl;
 }
 
 
