@@ -93,8 +93,8 @@ for (size_t i=0;i< m1._nfil;i+=2){
 		}
 		if(!(int)vectorOut1[1]==0){
 			auto aux=m1._matrixInMemory[i];
-			m1._matrixInMemory[i]=m1._matrixInMemory[j];
-			m1._matrixInMemory[j]=aux;
+			m1._matrixInMemory[i+1]=m1._matrixInMemory[j+1];
+			m1._matrixInMemory[j+1]=aux;
 			Registro1= _mm_loadu_si64(&m1._matrixInMemory[i]);
 			Registro2= _mm_loadu_si64(&m1._matrixInMemory[j]);
 		}
