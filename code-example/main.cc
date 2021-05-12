@@ -99,7 +99,7 @@ for (size_t i=0;i< m1._nfil;i+=2){
 		}
 	}
 }
-for(size_t i=0; i< 5; i++){		
+for(size_t i=0; i< m1._nfil; i++){		
 		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
 std::cout << "-------------------------------"<< std::endl;
