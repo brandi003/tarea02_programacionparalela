@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 std::cout << "tamaño arreglo:  " << m1._nfil << std::endl;
 __m128i Registro1,Registro2;
 
-Registro1=_mm_set_epi32(m1._matrixInMemory[0],m1._matrixInMemory[1], m1._matrixInMemory[2], m1._matrixInMemory[3])
+Registro1=_mm_set_epi32(m1._matrixInMemory[0],m1._matrixInMemory[1], m1._matrixInMemory[2], m1._matrixInMemory[3]);
 /*for (size_t i=0;i< m1._nfil;i+=2){
 	Registro1= _mm_loadu_si64(&m1._matrixInMemory[1]);
 	Registro2= _mm_loadu_si64(&m1._matrixInMemory[3]);
