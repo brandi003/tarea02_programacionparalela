@@ -73,7 +73,7 @@ __m128i Registro1,Registro2;
 
 //}
 
-Registro1=_mm_cmpeq_epi32(Registro1,Registro2);
+Registro1=_mm_move_epi64(Registro1[0],Registro1[1]);
 
 uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (32, sizeof(uint32_t)*2);
 _mm_storeu_si64(vectorOut1,Registro1);
