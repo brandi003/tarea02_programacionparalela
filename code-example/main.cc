@@ -85,6 +85,10 @@ std::cout <<  vectorOut1[0] << std::endl;
 std::cout <<  vectorOut1[1] << std::endl;
 std::cout <<  vectorOut1[2] << std::endl;
 std::cout <<  vectorOut1[3] << std::endl;
+std::cout <<  vectorOut1[4] << std::endl;
+std::cout <<  vectorOut1[5] << std::endl;
+std::cout <<  vectorOut1[6] << std::endl;
+std::cout <<  vectorOut1[7] << std::endl;
 
 	return(EXIT_SUCCESS);
 }
