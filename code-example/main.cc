@@ -127,7 +127,7 @@ _mm_storeu_si64(vectorOut1,Registro1);
 
 
 for(size_t i=0; i< m1._nfil; i++){		
-		std::cout <<  m1._matrixInMemory[i] << std::endl;
+		//std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
 std::cout << "-------------------------------"<< std::endl;
 
