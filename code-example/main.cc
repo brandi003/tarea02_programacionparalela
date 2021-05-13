@@ -126,6 +126,8 @@ std::cout <<  vectorOut1[0] << std::endl;
 std::cout <<  vectorOut1[1] << std::endl;
 std::cout <<  vectorOut1[2] << std::endl;
 std::cout <<  vectorOut1[3] << std::endl;
+std::cout <<  sizeof(uint32_t) << std::endl;
+std::cout <<  sizeof(int) << std::endl;
 
 
 
