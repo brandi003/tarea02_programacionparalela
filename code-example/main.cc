@@ -77,7 +77,7 @@ int main(int argc, char** argv)
 	__m128i Registro1,Registro2;
 	for (size_t i=0;i< m2._nfil;i+=1){
 		Registro1= _mm_set1_epi32 (m2._matrixInMemory[i]);
-		for (size_t j=i;j<m2._nfil;j+=2){
+		for (size_t j=i;j<m2._nfil;j+=2){/*
 			Registro2= _mm_loadu_si64(&m2._matrixInMemory[j]);
 			__m128i result =_mm_sub_epi64(Registro1,Registro2);
 			uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (8, 8);
@@ -104,7 +104,7 @@ int main(int argc, char** argv)
 				m2._matrixInMemory[i]=m2._matrixInMemory[j+1];
 				m2._matrixInMemory[j+1]=aux;
 				Registro1= _mm_set1_epi32 (m2._matrixInMemory[i]);
-			}
+			}*/
 			
 		}
 		
