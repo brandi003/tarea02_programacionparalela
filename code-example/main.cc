@@ -80,7 +80,7 @@ int main(int argc, char** argv)
 			Registro2= _mm_loadu_si64(&m2._matrixInMemory[j]);
 			__m128i result =_mm_sub_epi64(Registro1,Registro2);
 			uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (8, 8);
-			_mm_storeu_si64(vectorOut1,result);
+			//_mm_storeu_si64(vectorOut1,result);
 			/*
 			if((int)vectorOut1[0]>=0 && (int)vectorOut1[1]>=0){
 				continue;
