@@ -113,19 +113,20 @@ for (size_t i=0;i< m1._nfil;i+=1){
 		
 	}
 }*/
+/*
 for (size_t i=0;i< m1._nfil;i+=4){
 	Registro1= _mm_set_epi32(m1._matrixInMemory[i],m1._matrixInMemory[i+1],m1._matrixInMemory[i+2],m1._matrixInMemory[i+3]);
 	uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
 	_mm_storeu_si64(vectorOut1,Registro1);
 
-}
+}*/
 Registro1= _mm_setr_epi32(3,5,20,80);
-uint32_t vectorOut1[4];
-//_mm_storeu_si64(vectorOut1,Registro1);
-std::cout <<  Registro1[0] << std::endl;
-std::cout <<  Registro1[1] << std::endl;
-std::cout <<  Registro1[2] << std::endl;
-std::cout <<  Registro1[3] << std::endl;
+uint32_t *vectorOut1=(uint32_t*)aligned_alloc (8, sizeof(uint32_t)*2);
+_mm_storeu_si64(vectorOut1,Registro1);
+std::cout <<  vectorOut1[0] << std::endl;
+std::cout <<  vectorOut1[1] << std::endl;
+std::cout <<  vectorOut1[2] << std::endl;
+std::cout <<  vectorOut1[3] << std::endl;
 std::cout <<  sizeof(uint32_t) << std::endl;
 std::cout <<  sizeof(int) << std::endl;
 
