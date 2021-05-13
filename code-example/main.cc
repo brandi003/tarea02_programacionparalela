@@ -123,9 +123,10 @@ Registro1= _mm_setr_epi32(3,5,20,80);
 uint32_t vectorOut1[4];
 //_mm_storeu_si64(vectorOut1,Registro1);
 std::cout <<  (uint32_t)Registro1[0] << std::endl;
-std::cout <<  (uint32_t)Registro1[1] << std::endl;
+//std::cout <<  (uint32_t)Registro1[1] << std::endl;
+std::cout <<  "--------------" << std::endl;
 std::cout <<  (uint32_t)Registro1[2] << std::endl;
-std::cout <<  (uint32_t)Registro1[3] << std::endl;
+//std::cout <<  (uint32_t)Registro1[3] << std::endl;
 std::cout <<  sizeof(uint32_t) << std::endl;
 std::cout <<  sizeof(int) << std::endl;
 
