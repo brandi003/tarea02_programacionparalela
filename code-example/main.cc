@@ -124,10 +124,12 @@ for (size_t i=0;i< m1._nfil;i+=1){
 			auto aux=m1._matrixInMemory[i];
 			m1._matrixInMemory[i]=m1._matrixInMemory[j];
 			m1._matrixInMemory[j]=aux;
+			Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
 		}else if((int)vectorOut1[0]>(int)vectorOut1[1]){
 			auto aux=m1._matrixInMemory[i];
 			m1._matrixInMemory[i]=m1._matrixInMemory[j+1];
 			m1._matrixInMemory[j+1]=aux;
+			Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
 		}
 		
 	}
