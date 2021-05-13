@@ -124,7 +124,7 @@ int main(int argc, char** argv)
 	
 //////////////////////
 	//aquiempieza mi basura
-
+/*
 __m128i Registro1,Registro2;
 for (size_t i=0;i< m1._nfil;i+=1){
 	Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
@@ -159,7 +159,7 @@ for (size_t i=0;i< m1._nfil;i+=1){
 		
 	}
 	
-}
+}*/
 
 /*
 uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (8, 8);
