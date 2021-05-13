@@ -78,8 +78,10 @@ int main(int argc, char** argv)
 	timer3.start();
 	__m128i Registro1,Registro2;
 	for (size_t i=0;i< m2._nfil;i+=1){
+		std::cout << "i: " << i << std::endl;
 		Registro1= _mm_set1_epi32 (m2._matrixInMemory[i]);
 		for (size_t j=i;j<m2._nfil;j+=2){
+			std::cout << "j: " << j << std::endl;
 			Registro2= _mm_loadu_si64(&m2._matrixInMemory[j]);
 			__m128i result =_mm_sub_epi64(Registro1,Registro2);
 			uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
@@ -174,7 +176,6 @@ std::cout <<  vectorOut1[1] << std::endl;*/
 for(size_t i=0; i< m1._nfil; i++){		
 		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}*/
-std::cout << "-------------------------------"<< std::endl;
 
 	return(EXIT_SUCCESS);
 }
