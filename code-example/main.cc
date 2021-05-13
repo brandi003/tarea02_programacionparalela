@@ -62,7 +62,6 @@ int main(int argc, char** argv)
 		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
 	std::cout << "-------------------------------"<< std::endl;
-	m1=nullptr;
 /////////////////////
 	// mierda original que se va a quedar al final
 
