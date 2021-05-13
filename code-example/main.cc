@@ -120,6 +120,9 @@ for (size_t i=0;i< m1._nfil;i+=1){
 		__m128i result =_mm_sub_epi32(Registro1,Registro2);
 		uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
 		_mm_storeu_si64(vectorOut1,result);
+		std::cout <<  (int)vectorOut1[0] << std::endl;
+		std::cout <<  (int)vectorOut1[1] << std::endl;
+		break;
 		if((int)vectorOut1[0]>0 && (int)vectorOut1[1]>0){
 			continue;
 		}else if((int)vectorOut1[0]<0 && (int)vectorOut1[1]>0){
