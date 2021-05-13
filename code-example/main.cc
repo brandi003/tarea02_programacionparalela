@@ -79,9 +79,9 @@ int main(int argc, char** argv)
 		for (size_t j=i;j<m2._nfil;j+=2){
 			Registro2= _mm_loadu_si64(&m2._matrixInMemory[j]);
 			__m128i result =_mm_sub_epi64(Registro1,Registro2);
-			uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (8, 8);
-			//_mm_storeu_si64(vectorOut1,result);
 			/*
+			uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (8, 8);
+			_mm_storeu_si64(vectorOut1,result);
 			if((int)vectorOut1[0]>=0 && (int)vectorOut1[1]>=0){
 				continue;
 			}else if((int)vectorOut1[0]<0 && (int)vectorOut1[1]>0){
