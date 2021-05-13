@@ -113,29 +113,33 @@ for (size_t i=0;i< m1._nfil;i+=1){
 		
 	}
 }*/
-/*
-for (size_t i=0;i< m1._nfil;i+=4){
-	Registro1= _mm_set_epi32(m1._matrixInMemory[i],m1._matrixInMemory[i+1],m1._matrixInMemory[i+2],m1._matrixInMemory[i+3]);
-	uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
-	_mm_storeu_si64(vectorOut1,Registro1);
+for (size_t i=0;i< m1._nfil;i+=1){
+	Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
+	for (size_t j=0;j<m1._nfil;j+=2){
+		Registro2= _mm_loadu_si64(&m1._matrixInMemory[j]);
+		__m128i result =_mm_sub_epi32(Registro1,Registro2);
+		uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
+		_mm_storeu_si64(vectorOut1,result);
+		if((int)vectorOut1[0]<(int)vectorOut1[1]){
+			auto aux=m1._matrixInMemory[i];
+			m1._matrixInMemory[i]=m1._matrixInMemory[j];
+			m1._matrixInMemory[j]=aux;
+		}else if((int)vectorOut1[0]>(int)vectorOut1[1]){
+			auto aux=m1._matrixInMemory[i];
+			m1._matrixInMemory[i]=m1._matrixInMemory[j+1];
+			m1._matrixInMemory[j+1]=aux;
+		}
+		
+	}
+}
 
-}*/
-Registro1= _mm_set_ps(3.0,5.0,2.0,8.0);
-float *vectorOut1=(float*)aligned_alloc (8, sizeof(float)*2);
-_mm_storeu_ps(vectorOut1,Registro1);
-std::cout <<  sizeof(vectorOut1)/sizeof(float) << std::endl;
-std::cout <<  vectorOut1[0] << std::endl;
-std::cout <<  vectorOut1[1] << std::endl;
-std::cout <<  vectorOut1[2] << std::endl;
-std::cout <<  vectorOut1[3] << std::endl;
-std::cout <<  sizeof(uint32_t) << std::endl;
-std::cout <<  sizeof(int) << std::endl;
+
 
 
 
 
 for(size_t i=0; i< m1._nfil; i++){		
-		//std::cout <<  m1._matrixInMemory[i] << std::endl;
+		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
 std::cout << "-------------------------------"<< std::endl;
 
