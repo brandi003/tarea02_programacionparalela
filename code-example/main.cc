@@ -121,7 +121,7 @@ for (size_t i=0;i< m1._nfil;i+=4){
 
 }*/
 Registro1= _mm_setr_epi32(3,5,2,8);
-uint32_t *vectorOut1=(uint32_t*)aligned_alloc (8, sizeof(uint32_t)*4);
+uint32_t *vectorOut1[4]=(uint32_t*)aligned_alloc (8, sizeof(uint32_t)*2);
 _mm_storeu_si64(vectorOut1,Registro1);
 std::cout <<  sizeof(vectorOut1)/sizeof(uint32_t) << std::endl;
 std::cout <<  vectorOut1[0] << std::endl;
