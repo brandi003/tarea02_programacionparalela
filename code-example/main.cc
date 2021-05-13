@@ -120,7 +120,7 @@ for (size_t i=0;i< m1._nfil;i+=4){
 	_mm_storeu_si64(vectorOut1,Registro1);
 
 }*/
-Registro1= _mm_setr_epi32(3.0,5.0,2.0,8.0);
+Registro1= _mm_set_ps(3.0,5.0,2.0,8.0);
 float *vectorOut1=(float*)aligned_alloc (8, sizeof(float)*2);
 _mm_storeu_ps(vectorOut1,Registro1);
 std::cout <<  sizeof(vectorOut1)/sizeof(float) << std::endl;
