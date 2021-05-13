@@ -76,7 +76,6 @@ int main(int argc, char** argv)
 	std::cout << "Time to transfer to main memory: " << timer2.elapsed() << std::endl;
 	std::cout << "Tamaño del arreglo " << m2._nfil << std::endl;
 	timer3.start();
-	/*
 	__m128i Registro1,Registro2;
 	for (size_t i=0;i< m2._nfil;i+=1){
 		std::cout << "i: " << i << std::endl;
@@ -113,7 +112,7 @@ int main(int argc, char** argv)
 			
 		}
 		
-	}*/
+	}
 	timer3.stop();
 	
 	std::cout << "Time to sort in main memory: " << timer3.elapsed() << std::endl;
