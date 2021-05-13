@@ -147,18 +147,18 @@ for (size_t i=0;i< m1._nfil;i+=1){
 	}
 	
 }
-
+/*
 uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (8, 8);
 Registro2= _mm_loadu_si64(&m1._matrixInMemory[999]);
 _mm_storeu_si64(vectorOut1,Registro2);
 
 std::cout <<  m1._matrixInMemory[999] << std::endl;
 std::cout <<  vectorOut1[0] << std::endl;
-std::cout <<  vectorOut1[1] << std::endl;
+std::cout <<  vectorOut1[1] << std::endl;*/
 
 
 for(size_t i=0; i< m1._nfil; i++){		
-		//std::cout <<  m1._matrixInMemory[i] << std::endl;
+		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
 std::cout << "-------------------------------"<< std::endl;
 
