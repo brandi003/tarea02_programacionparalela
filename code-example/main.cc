@@ -119,7 +119,7 @@ for (size_t i=0;i< m1._nfil;i+=4){
 	_mm_storeu_si64(vectorOut1,Registro1);
 
 }
-Registro1= _mm_setr_epi32(3,5,2,80);
+Registro1= _mm_setr_epi32(3,5,20,80);
 uint32_t vectorOut1[4];
 //_mm_storeu_si64(vectorOut1,Registro1);
 std::cout <<  (uint32_t)Registro1[0] << std::endl;
