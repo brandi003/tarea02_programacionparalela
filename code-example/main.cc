@@ -121,7 +121,7 @@ for (size_t i=0;i< m1._nfil;i+=4){
 }
 Registro1= _mm_setr_epi32(3,5,2,80);
 uint32_t vectorOut1[4];
-_mm_storeu_si64(vectorOut1,Registro1);
+_mm_storeu_si32(vectorOut1,Registro1);
 std::cout <<  vectorOut1[0] << std::endl;
 std::cout <<  vectorOut1[1] << std::endl;
 std::cout <<  vectorOut1[2] << std::endl;
