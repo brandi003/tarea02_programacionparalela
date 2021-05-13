@@ -81,7 +81,6 @@ int main(int argc, char** argv)
 			Registro2= _mm_loadu_si64(&m2._matrixInMemory[j]);
 			__m128i result =_mm_sub_epi64(Registro1,Registro2);
 			_mm_storeu_si64(vectorOut1,result);
-			/*
 			if((int)vectorOut1[0]>=0 && (int)vectorOut1[1]>=0){
 				continue;
 			}else if((int)vectorOut1[0]<0 && (int)vectorOut1[1]>0){
@@ -104,7 +103,7 @@ int main(int argc, char** argv)
 				m2._matrixInMemory[i]=m2._matrixInMemory[j+1];
 				m2._matrixInMemory[j+1]=aux;
 				Registro1= _mm_set1_epi32 (m2._matrixInMemory[i]);
-			}*/
+			}
 			
 		}
 		
