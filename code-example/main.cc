@@ -123,7 +123,7 @@ for (size_t i=0;i< m1._nfil;i+=4){
 Registro1= _mm_setr_epi32(3.0,5.0,2.0,8.0);
 float *vectorOut1=(float*)aligned_alloc (8, sizeof(float)*2);
 _mm_storeu_ps(vectorOut1,Registro1);
-std::cout <<  sizeof(vectorOut1)/sizeof(uint32_t) << std::endl;
+std::cout <<  sizeof(vectorOut1)/sizeof(float) << std::endl;
 std::cout <<  vectorOut1[0] << std::endl;
 std::cout <<  vectorOut1[1] << std::endl;
 std::cout <<  vectorOut1[2] << std::endl;
