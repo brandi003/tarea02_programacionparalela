@@ -120,7 +120,7 @@ for (size_t i=0;i< m1._nfil;i+=4){
 
 }
 Registro1= _mm_setr_epi32(m1._matrixInMemory[0],m1._matrixInMemory[1],m1._matrixInMemory[2],m1._matrixInMemory[3]);
-uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (32, 128);
+uint32_t vectorOut1[4];
 _mm_storeu_si64(vectorOut1,Registro1);
 std::cout <<  Registro1[0] << std::endl;
 std::cout <<  Registro1[1] << std::endl;
