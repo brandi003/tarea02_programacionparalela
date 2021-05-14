@@ -77,7 +77,7 @@ int main(int argc, char** argv)
 	std::cout << "Time to transfer to main memory: " << timer2.elapsed() << std::endl;
 	timer3.start();
 	__m128i Registro1,Registro2;
-	uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (8, 8);
+	uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (32, sizeof(uint32_t)*4);
 	for (size_t i=0;i< m2._nfil;i+=1){
 		Registro1= _mm_set1_epi32 (m2._matrixInMemory[i]);
 		for (size_t j=i;j<m2._nfil;j+=2){
