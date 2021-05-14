@@ -65,6 +65,41 @@ int main(int argc, char** argv)
 /////////////////////
 	// mierda original que se va a quedar al final
 
+	Timing timer4, timer5;
+	////////////////////////////////////////////////////////////////
+	// Transferir la matriz del archivo fileName a memoria principal
+	timer4.start();
+	MatrixToMem m3(fileName);
+	timer4.stop();
+	std::cout << "Time to transfer to main memory: " << timer4.elapsed() << std::endl;
+	timer5.start();
+	__m128i Registro1,Registro2;
+	uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (8, 8);
+	for (size_t i=0;i< m3._nfil;i+=1){
+		for (size_t j=i;j<m3._nfil;j+=2){
+			if(m3._matrixInMemory[i]>m3._matrixInMemory[j]){
+				auto aux=m3._matrixInMemory[i];
+				m3._matrixInMemory[i]=m3._matrixInMemory[j];
+				m3._matrixInMemory[j]=aux;
+			}
+		}
+		
+	}
+	timer5.stop();
+	
+	std::cout << "Time to sort in main memory: " << timer5.elapsed() << std::endl;
+	
+	////////////////////////////////////////////////////////////////
+	// Mostrar los 5 primeros elementos de la matriz ordenada.
+	for(size_t i=0; i< 5; i++){		
+		std::cout <<  m1._matrixInMemory[i] << std::endl;
+	}
+	std::cout << "-------------------------------"<< std::endl;
+	
+
+/////////////////////
+	// mierda original que se va a quedar al final
+
 	Timing timer2, timer3;
 	////////////////////////////////////////////////////////////////
 	// Transferir la matriz del archivo fileName a memoria principal
@@ -118,59 +153,7 @@ int main(int argc, char** argv)
 		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
 	std::cout << "-------------------------------"<< std::endl;
-	
-//////////////////////
-	//aquiempieza mi basura
-/*
-__m128i Registro1,Registro2;
-for (size_t i=0;i< m1._nfil;i+=1){
-	Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
-	for (size_t j=i;j<m1._nfil;j+=2){
-		Registro2= _mm_loadu_si64(&m1._matrixInMemory[j]);
-		__m128i result =_mm_sub_epi64(Registro1,Registro2);
-		uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (64, 8);
-		_mm_storeu_si64(vectorOut1,result);
-		if((int)vectorOut1[0]>=0 && (int)vectorOut1[1]>=0){
-			continue;
-		}else if((int)vectorOut1[0]<0 && (int)vectorOut1[1]>0){
-			auto aux=m1._matrixInMemory[i];
-			m1._matrixInMemory[i]=m1._matrixInMemory[j];
-			m1._matrixInMemory[j]=aux;
-			Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
-		}else if((int)vectorOut1[0]>0 && (int)vectorOut1[1]<0){
-			auto aux=m1._matrixInMemory[i];
-			m1._matrixInMemory[i]=m1._matrixInMemory[j+1];
-			m1._matrixInMemory[j+1]=aux;
-			Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
-		}else if((int)vectorOut1[0]<=(int)vectorOut1[1]){
-			auto aux=m1._matrixInMemory[i];
-			m1._matrixInMemory[i]=m1._matrixInMemory[j];
-			m1._matrixInMemory[j]=aux;
-			Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
-		}else if((int)vectorOut1[0]>(int)vectorOut1[1]){
-			auto aux=m1._matrixInMemory[i];
-			m1._matrixInMemory[i]=m1._matrixInMemory[j+1];
-			m1._matrixInMemory[j+1]=aux;
-			Registro1= _mm_set1_epi32 (m1._matrixInMemory[i]);
-		}
-		
-	}
-	
-}*/
 
-/*
-uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (8, 8);
-Registro2= _mm_loadu_si64(&m1._matrixInMemory[999]);
-_mm_storeu_si64(vectorOut1,Registro2);
-
-std::cout <<  m1._matrixInMemory[999] << std::endl;
-std::cout <<  vectorOut1[0] << std::endl;
-std::cout <<  vectorOut1[1] << std::endl;*/
-
-/*
-for(size_t i=0; i< m1._nfil; i++){		
-		std::cout <<  m1._matrixInMemory[i] << std::endl;
-	}*/
 
 	return(EXIT_SUCCESS);
 }
