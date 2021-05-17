@@ -23,6 +23,34 @@ void uso(std::string pname)
 	exit(EXIT_FAILURE);
 }
 
+__m128i sorting_network(__m128i arreglo){
+	__m128i minp1=_mm_min_epi32(arreglo[0],arreglo[2]);
+	__m128i maxp1=_mm_max_epi32(arreglo[0],arreglo[2]);
+	__m128i minp2=_mm_min_epi32(arreglo[1],arreglo[3]);
+	__m128i maxp2=_mm_max_epi32(arreglo[1],arreglo[3]);
+	__m128i minp3=_mm_min_epi32(maxp1,maxp2);
+	__m128i maxp3=_mm_max_epi32(maxp1,maxp2);
+	__m128i minp4=_mm_min_epi32(minp1,minp2);
+	__m128i maxp4=_mm_max_epi32(minp1,minp2);
+	__m128i minp5=_mm_min_epi32(maxp4,minp3);
+	__m128i maxp5=_mm_max_epi32(maxp4,minp3);
+	arreglo[0]=minp4;
+	arreglo[1]=minp5;
+	arreglo[2]=maxp5;
+	arreglo[3]=maxp3;
+	return arreglo;
+
+}
+
+void print_matriz(__m128i arreglo){
+	std::cout << "-----------------Inicio de la matriz---------------------" << std::endl;
+	std::cout << "[" << _mm_extract_epi32(arreglo[0],0) << "," << _mm_extract_epi32(arreglo[0],1) << "," << _mm_extract_epi32(arreglo[0],2) << "," << _mm_extract_epi32(arreglo[0],3) << "]" << std::endl;
+	std::cout << "[" << _mm_extract_epi32(arreglo[1],0) << "," << _mm_extract_epi32(arreglo[1],1) << "," << _mm_extract_epi32(arreglo[1],2) << "," << _mm_extract_epi32(arreglo[1],3) << "]" << std::endl;
+	std::cout << "[" << _mm_extract_epi32(arreglo[2],0) << "," << _mm_extract_epi32(arreglo[2],1) << "," << _mm_extract_epi32(arreglo[2],2) << "," << _mm_extract_epi32(arreglo[2],3) << "]" << std::endl;
+	std::cout << "[" << _mm_extract_epi32(arreglo[3],0) << "," << _mm_extract_epi32(arreglo[3],1) << "," << _mm_extract_epi32(arreglo[3],2) << "," << _mm_extract_epi32(arreglo[3],3) << "]" << std::endl;
+	std::cout << "-----------------Termino de la matriz---------------------" << std::endl;
+}
+
 int main(int argc, char** argv)
 {
 
@@ -82,26 +110,10 @@ int main(int argc, char** argv)
 		Registros[1]=_mm_setr_epi32(m2._matrixInMemory[i+4],m2._matrixInMemory[i+5],m2._matrixInMemory[i+6],m2._matrixInMemory[i+7]);
 		Registros[2]=_mm_setr_epi32(m2._matrixInMemory[i+8],m2._matrixInMemory[i+9],m2._matrixInMemory[i+10],m2._matrixInMemory[i+11]);
 		Registros[3]=_mm_setr_epi32(m2._matrixInMemory[i+12],m2._matrixInMemory[i+13],m2._matrixInMemory[i+14],m2._matrixInMemory[i+15]);
-		std::cout << _mm_extract_epi32(Registros[0],0) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[0],1) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[0],2) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[0],3) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[1],0) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[1],1) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[1],2) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[1],3) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[2],0) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[2],1) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[2],2) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[2],3) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[3],0) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[3],1) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[3],2) << std::endl;
-		std::cout << _mm_extract_epi32(Registros[3],3) << std::endl;
-		std::cout << "---------------------------"<< std::endl;
-		for (size_t i=0;i<16;i++){
-			std::cout << m2._matrixInMemory[i] << std::endl;
-		}
+		print_matriz(Registros);
+		Registros=sorting_network(Registros);
+		print_matriz(Registros);
+		
 
 
 
