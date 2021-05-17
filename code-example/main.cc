@@ -78,10 +78,10 @@ int main(int argc, char** argv)
 	timer3.start();
 	__m128i Registro1,Registro2,Registro3,Registro4;
 	for (size_t i=0;i<m2._nfil;i+=16){
-		Registro1=_mm_loadu_si128(&m2._matrixInMemory[i]);
-		Registro2=_mm_loadu_si128(&m2._matrixInMemory[i+4]);
-		Registro3=_mm_loadu_si128(&m2._matrixInMemory[i+8]);
-		Registro4=_mm_loadu_si128(&m2._matrixInMemory[i+12]);
+		Registro1=_mm_load_si128(&m2._matrixInMemory[i]);
+		Registro2=_mm_load_si128(&m2._matrixInMemory[i+4]);
+		Registro3=_mm_load_si128(&m2._matrixInMemory[i+8]);
+		Registro4=_mm_load_si128(&m2._matrixInMemory[i+12]);
 		std::cout << _mm_extract_epi32(Registro1,0) << std::endl;
 		std::cout << _mm_extract_epi32(Registro1,1) << std::endl;
 		std::cout << _mm_extract_epi32(Registro1,2) << std::endl;
