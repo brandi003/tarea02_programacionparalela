@@ -76,42 +76,76 @@ int main(int argc, char** argv)
 	timer2.stop();
 	std::cout << "Time to transfer to main memory: " << timer2.elapsed() << std::endl;
 	timer3.start();
-	__m128i Registro1,Registro2,Registro3,Registro4;
-	for (size_t i=0;i<m2._nfil;i+=16){
-		Registro1=_mm_loadu_si128(&m2._matrixInMemory[i]);
-		Registro2=_mm_loadu_si128(&m2._matrixInMemory[i+4]);
-		Registro3=_mm_loadu_si128(&m2._matrixInMemory[i+8]);
-		Registro4=_mm_loadu_si128(&m2._matrixInMemory[i+12]);
-		std::cout << _mm_extract_epi32(Registro1,0) << std::endl;
-		std::cout << _mm_extract_epi32(Registro1,1) << std::endl;
-		std::cout << _mm_extract_epi32(Registro1,2) << std::endl;
-		std::cout << _mm_extract_epi32(Registro1,3) << std::endl;
-		std::cout << _mm_extract_epi32(Registro2,0) << std::endl;
-		std::cout << _mm_extract_epi32(Registro2,1) << std::endl;
-		std::cout << _mm_extract_epi32(Registro2,2) << std::endl;
-		std::cout << _mm_extract_epi32(Registro2,3) << std::endl;
-		std::cout << _mm_extract_epi32(Registro3,0) << std::endl;
-		std::cout << _mm_extract_epi32(Registro3,1) << std::endl;
-		std::cout << _mm_extract_epi32(Registro3,2) << std::endl;
-		std::cout << _mm_extract_epi32(Registro3,3) << std::endl;
-		std::cout << _mm_extract_epi32(Registro4,0) << std::endl;
-		std::cout << _mm_extract_epi32(Registro4,1) << std::endl;
-		std::cout << _mm_extract_epi32(Registro4,2) << std::endl;
-		std::cout << _mm_extract_epi32(Registro4,3) << std::endl;
-		for (size_t i=0;i<16;i++){
-			std::cout << m2._matrixInMemory[i] << std::endl;
+	__m128i Registro1,Registro2;
+	uint32_t *vectorOut1 = (uint32_t*)aligned_alloc (32, sizeof(uint32_t)*4);
+	for (size_t i=0;i< m2._nfil;i+=1){
+		Registro1= _mm_set1_epi32 (m2._matrixInMemory[i]);
+		for (size_t j=i;j<m2._nfil;j+=2){
+			Registro2= _mm_loadu_si64(&m2._matrixInMemory[j]);
+			__m128i result =_mm_sub_epi64(Registro1,Registro2);
+			_mm_storeu_si64(vectorOut1,result);
+			if((int)vectorOut1[0]>=0 && (int)vectorOut1[1]>=0){
+				continue;
+			}else if((int)vectorOut1[0]<0 && (int)vectorOut1[1]>0){
+				auto aux=m2._matrixInMemory[i];
+				m2._matrixInMemory[i]=m2._matrixInMemory[j];
+				m2._matrixInMemory[j]=aux;
+				Registro1= _mm_set1_epi32 (m2._matrixInMemory[i]);
+			}else if((int)vectorOut1[0]>0 && (int)vectorOut1[1]<0){
+				auto aux=m2._matrixInMemory[i];
+				m2._matrixInMemory[i]=m2._matrixInMemory[j+1];
+				m2._matrixInMemory[j+1]=aux;
+				Registro1= _mm_set1_epi32 (m2._matrixInMemory[i]);
+			}else if((int)vectorOut1[0]<=(int)vectorOut1[1]){
+				auto aux=m2._matrixInMemory[i];
+				m2._matrixInMemory[i]=m2._matrixInMemory[j];
+				m2._matrixInMemory[j]=aux;
+				Registro1= _mm_set1_epi32 (m2._matrixInMemory[i]);
+			}else if((int)vectorOut1[0]>(int)vectorOut1[1]){
+				auto aux=m2._matrixInMemory[i];
+				m2._matrixInMemory[i]=m2._matrixInMemory[j+1];
+				m2._matrixInMemory[j+1]=aux;
+				Registro1= _mm_set1_epi32 (m2._matrixInMemory[i]);
+			}
+			
 		}
-
-
-
-
-
-
-		break;
+		
 	}
 	timer3.stop();
 	
 	std::cout << "Time to sort in main memory: " << timer3.elapsed() << std::endl;
+	
+	////////////////////////////////////////////////////////////////
+	// Mostrar los 5 primeros elementos de la matriz ordenada.
+	for(size_t i=0; i< 5; i++){		
+		std::cout <<  m1._matrixInMemory[i] << std::endl;
+	}
+	std::cout << "-------------------------------"<< std::endl;
+	
+//////////////////////////////////////////////////////////////////////////////
+	///////////////ejecucion de bubble sort sin intrinsecas///////////
+
+	Timing timer4, timer5;
+	////////////////////////////////////////////////////////////////
+	// Transferir la matriz del archivo fileName a memoria principal
+	timer4.start();
+	MatrixToMem m3(fileName);
+	timer4.stop();
+	std::cout << "Time to transfer to main memory: " << timer4.elapsed() << std::endl;
+	timer5.start();
+	for (size_t i=0;i< m3._nfil;i+=1){
+		for (size_t j=i;j<m3._nfil;j+=2){
+			if(m3._matrixInMemory[i]>m3._matrixInMemory[j]){
+				auto aux=m3._matrixInMemory[i];
+				m3._matrixInMemory[i]=m3._matrixInMemory[j];
+				m3._matrixInMemory[j]=aux;
+			}
+		}
+		
+	}
+	timer5.stop();
+	
+	std::cout << "Time to sort in main memory: " << timer5.elapsed() << std::endl;
 	
 	////////////////////////////////////////////////////////////////
 	// Mostrar los 5 primeros elementos de la matriz ordenada.
