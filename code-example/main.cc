@@ -104,7 +104,7 @@ int main(int argc, char** argv)
 	timer2.stop();
 	std::cout << "Time to transfer to main memory: " << timer2.elapsed() << std::endl;
 	timer3.start();
-	__m128i* Registros[4];
+	__m128i Registros[4];
 	for (size_t i=0;i<m2._nfil;i+=16){
 		Registros[0]=_mm_setr_epi32(m2._matrixInMemory[i],m2._matrixInMemory[i+1],m2._matrixInMemory[i+2],m2._matrixInMemory[i+3]);
 		Registros[1]=_mm_setr_epi32(m2._matrixInMemory[i+4],m2._matrixInMemory[i+5],m2._matrixInMemory[i+6],m2._matrixInMemory[i+7]);
