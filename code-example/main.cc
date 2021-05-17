@@ -53,6 +53,10 @@ void traspuesta(__m128i* Registros){
 	Registros[3]=_mm_unpackhi_epi64(sub1,sub2);
 }
 
+void bitonic_sorter(__m128i Registro1,__m128i Registro2){
+	Registro2=_mm_shuffle_epi32(Registro2, __MM_SHUFFLE(0, 1, 2, 3));
+}
+
 void print_matriz(__m128i* Registros){
 	std::cout << "-----------------Inicio de la matriz---------------------" << std::endl;
 	std::cout << "[" << _mm_extract_epi32(Registros[0],0) << "," << _mm_extract_epi32(Registros[0],1) << "," << _mm_extract_epi32(Registros[0],2) << "," << _mm_extract_epi32(Registros[0],3) << "]" << std::endl;
