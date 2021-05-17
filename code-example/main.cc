@@ -34,6 +34,7 @@ __m128i sorting_network(__m128i* arreglo){
 	__m128i maxp4=_mm_max_epi32(minp1,minp2);
 	__m128i minp5=_mm_min_epi32(maxp4,minp3);
 	__m128i maxp5=_mm_max_epi32(maxp4,minp3);
+	__m128i arreglo[4];
 	arreglo[0]=minp4;
 	arreglo[1]=minp5;
 	arreglo[2]=maxp5;
