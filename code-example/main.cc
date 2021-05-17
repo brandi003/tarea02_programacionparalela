@@ -23,7 +23,7 @@ void uso(std::string pname)
 	exit(EXIT_FAILURE);
 }
 
-__m128i[] sorting_network(__m128i[] arreglo){
+__m128i* sorting_network(__m128i[] arreglo){
 	__m128i minp1=_mm_min_epi32(arreglo[0],arreglo[2]);
 	__m128i maxp1=_mm_max_epi32(arreglo[0],arreglo[2]);
 	__m128i minp2=_mm_min_epi32(arreglo[1],arreglo[3]);
