@@ -54,7 +54,7 @@ void traspuesta(__m128i* Registros){
 }
 
 void bitonic_sorter(__m128i Registro1,__m128i Registro2){
-	Registro2=_mm_shuffle_epi32(Registro2, __MM_SHUFFLE(0, 1, 2, 3));
+	Registro2=_mm_shuffle_epi32(Registro2, _MM_SHUFFLE(0, 1, 2, 3));
 }
 
 void print_matriz(__m128i* Registros){
