@@ -98,6 +98,7 @@ int main(int argc, char** argv)
 		std::cout << _mm_extract_epi32(Registros[3],1) << std::endl;
 		std::cout << _mm_extract_epi32(Registros[3],2) << std::endl;
 		std::cout << _mm_extract_epi32(Registros[3],3) << std::endl;
+		std::cout << "---------------------------"<< std::endl;
 		for (size_t i=0;i<16;i++){
 			std::cout << m2._matrixInMemory[i] << std::endl;
 		}
