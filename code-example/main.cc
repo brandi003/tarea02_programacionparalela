@@ -23,30 +23,30 @@ void uso(std::string pname)
 	exit(EXIT_FAILURE);
 }
 
-void sorting_network(__m128i* arreglo){
-	__m128i minp1=_mm_min_epi32(arreglo[0],arreglo[2]);
-	__m128i maxp1=_mm_max_epi32(arreglo[0],arreglo[2]);
-	__m128i minp2=_mm_min_epi32(arreglo[1],arreglo[3]);
-	__m128i maxp2=_mm_max_epi32(arreglo[1],arreglo[3]);
+void sorting_network(__m128i* Registros){
+	__m128i minp1=_mm_min_epi32(Registros[0],Registros[2]);
+	__m128i maxp1=_mm_max_epi32(Registros[0],Registros[2]);
+	__m128i minp2=_mm_min_epi32(Registros[1],Registros[3]);
+	__m128i maxp2=_mm_max_epi32(Registros[1],Registros[3]);
 	__m128i minp3=_mm_min_epi32(maxp1,maxp2);
 	__m128i maxp3=_mm_max_epi32(maxp1,maxp2);
 	__m128i minp4=_mm_min_epi32(minp1,minp2);
 	__m128i maxp4=_mm_max_epi32(minp1,minp2);
 	__m128i minp5=_mm_min_epi32(maxp4,minp3);
 	__m128i maxp5=_mm_max_epi32(maxp4,minp3);
-	arreglo[0]=minp4;
-	arreglo[1]=minp5;
-	arreglo[2]=maxp5;
-	arreglo[3]=maxp3;
+	Registros[0]=minp4;
+	Registros[1]=minp5;
+	Registros[2]=maxp5;
+	Registros[3]=maxp3;
 
 }
 
-void print_matriz(__m128i* arreglo){
+void print_matriz(__m128i* Registros){
 	std::cout << "-----------------Inicio de la matriz---------------------" << std::endl;
-	std::cout << "[" << _mm_extract_epi32(arreglo[0],0) << "," << _mm_extract_epi32(arreglo[0],1) << "," << _mm_extract_epi32(arreglo[0],2) << "," << _mm_extract_epi32(arreglo[0],3) << "]" << std::endl;
-	std::cout << "[" << _mm_extract_epi32(arreglo[1],0) << "," << _mm_extract_epi32(arreglo[1],1) << "," << _mm_extract_epi32(arreglo[1],2) << "," << _mm_extract_epi32(arreglo[1],3) << "]" << std::endl;
-	std::cout << "[" << _mm_extract_epi32(arreglo[2],0) << "," << _mm_extract_epi32(arreglo[2],1) << "," << _mm_extract_epi32(arreglo[2],2) << "," << _mm_extract_epi32(arreglo[2],3) << "]" << std::endl;
-	std::cout << "[" << _mm_extract_epi32(arreglo[3],0) << "," << _mm_extract_epi32(arreglo[3],1) << "," << _mm_extract_epi32(arreglo[3],2) << "," << _mm_extract_epi32(arreglo[3],3) << "]" << std::endl;
+	std::cout << "[" << _mm_extract_epi32(Registros[0],0) << "," << _mm_extract_epi32(Registros[0],1) << "," << _mm_extract_epi32(Registros[0],2) << "," << _mm_extract_epi32(Registros[0],3) << "]" << std::endl;
+	std::cout << "[" << _mm_extract_epi32(Registros[1],0) << "," << _mm_extract_epi32(Registros[1],1) << "," << _mm_extract_epi32(Registros[1],2) << "," << _mm_extract_epi32(Registros[1],3) << "]" << std::endl;
+	std::cout << "[" << _mm_extract_epi32(Registros[2],0) << "," << _mm_extract_epi32(Registros[2],1) << "," << _mm_extract_epi32(Registros[2],2) << "," << _mm_extract_epi32(Registros[2],3) << "]" << std::endl;
+	std::cout << "[" << _mm_extract_epi32(Registros[3],0) << "," << _mm_extract_epi32(Registros[3],1) << "," << _mm_extract_epi32(Registros[3],2) << "," << _mm_extract_epi32(Registros[3],3) << "]" << std::endl;
 	std::cout << "-----------------Termino de la matriz---------------------" << std::endl;
 }
 
