@@ -42,10 +42,10 @@ void sorting_network(__m128i* Registros){
 }
 
 void traspuesta(__m128i* Registros){
-	_m128i sub1 = _mm_unpackhi_epi32(Registros[0],Registros[1]);
-	_m128i sub2 = _mm_unpackhi_epi32(Registros[2],Registros[3]);
-	_m128i sub3 = _mm_unpacklo_epi32(Registros[0],Registros[1]);
-	_m128i sub4 = _mm_unpacklo_epi32(Registros[2],Registros[3]);
+	__m128i sub1 = _mm_unpackhi_epi32(Registros[0],Registros[1]);
+	__m128i sub2 = _mm_unpackhi_epi32(Registros[2],Registros[3]);
+	__m128i sub3 = _mm_unpacklo_epi32(Registros[0],Registros[1]);
+	__m128i sub4 = _mm_unpacklo_epi32(Registros[2],Registros[3]);
 
 	Registros[0]=_mm_unpacklo_epi64(sub3,sub4);
 	Registros[1]=_mm_unpackhi_epi64(sub3,sub4);
