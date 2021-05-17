@@ -41,6 +41,18 @@ void sorting_network(__m128i* Registros){
 
 }
 
+void traspuesta(__m128i* Registros){
+	_m128i sub1 = _mm_unpackhi_epi32(Registros[0],Registros[1]);
+	_m128i sub2 = _mm_unpackhi_epi32(Registros[2],Registros[3]);
+	_m128i sub3 = _mm_unpacklo_epi32(Registros[0],Registros[1]);
+	_m128i sub4 = _mm_unpacklo_epi32(Registros[2],Registros[3]);
+
+	Registros[0]=_mm_unpacklo_epi64(sub3,sub4);
+	Registros[1]=_mm_unpackhi_epi64(sub3,sub4);
+	Registros[2]=_mm_unpacklo_epi64(sub1,sub2);
+	Registros[3]=_mm_unpackhi_epi64(sub1,sub2);
+}
+
 void print_matriz(__m128i* Registros){
 	std::cout << "-----------------Inicio de la matriz---------------------" << std::endl;
 	std::cout << "[" << _mm_extract_epi32(Registros[0],0) << "," << _mm_extract_epi32(Registros[0],1) << "," << _mm_extract_epi32(Registros[0],2) << "," << _mm_extract_epi32(Registros[0],3) << "]" << std::endl;
@@ -109,8 +121,9 @@ int main(int argc, char** argv)
 		Registros[1]=_mm_setr_epi32(m2._matrixInMemory[i+4],m2._matrixInMemory[i+5],m2._matrixInMemory[i+6],m2._matrixInMemory[i+7]);
 		Registros[2]=_mm_setr_epi32(m2._matrixInMemory[i+8],m2._matrixInMemory[i+9],m2._matrixInMemory[i+10],m2._matrixInMemory[i+11]);
 		Registros[3]=_mm_setr_epi32(m2._matrixInMemory[i+12],m2._matrixInMemory[i+13],m2._matrixInMemory[i+14],m2._matrixInMemory[i+15]);
-		print_matriz(Registros);
 		sorting_network(Registros);
+		print_matriz(Registros);
+		traspuesta(Registros);
 		print_matriz(Registros);
 		
 
