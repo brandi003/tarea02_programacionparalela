@@ -78,10 +78,10 @@ int main(int argc, char** argv)
 	timer3.start();
 	__m128i Registros[4];
 	for (size_t i=0;i<m2._nfil;i+=16){
-		Registros[0]=_mm_setr_epi32(m2[i],m2[i+1],m2[i+2],m2[i+3]);
-		Registros[1]=_mm_setr_epi32(m2[i+4],m2[i+5],m2[i+6],m2[i+7]);
-		Registros[2]=_mm_setr_epi32(m2[i+8],m2[i+9],m2[i+10],m2[i+11]);
-		Registros[3]=_mm_setr_epi32(m2[i+12],m2[i+13],m2[i+14],m2[i+15]);
+		Registros[0]=_mm_setr_epi32(m2._matrixInMemory[i],m2._matrixInMemory[i+1],m2._matrixInMemory[i+2],m2._matrixInMemory[i+3]);
+		Registros[1]=_mm_setr_epi32(m2._matrixInMemory[i+4],m2._matrixInMemory[i+5],m2._matrixInMemory[i+6],m2._matrixInMemory[i+7]);
+		Registros[2]=_mm_setr_epi32(m2._matrixInMemory[i+8],m2._matrixInMemory[i+9],m2._matrixInMemory[i+10],m2._matrixInMemory[i+11]);
+		Registros[3]=_mm_setr_epi32(m2._matrixInMemory[i+12],m2._matrixInMemory[i+13],m2._matrixInMemory[i+14],m2._matrixInMemory[i+15]);
 		std::cout << _mm_extract_epi32(Registros[0],0) << std::endl;
 		std::cout << _mm_extract_epi32(Registros[0],1) << std::endl;
 		std::cout << _mm_extract_epi32(Registros[0],2) << std::endl;
