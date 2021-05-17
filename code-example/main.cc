@@ -23,7 +23,7 @@ void uso(std::string pname)
 	exit(EXIT_FAILURE);
 }
 
-__m128i* sorting_network(__m128i* arreglo){
+__m128i[4] sorting_network(__m128i[4] arreglo){
 	__m128i minp1=_mm_min_epi32(arreglo[0],arreglo[2]);
 	__m128i maxp1=_mm_max_epi32(arreglo[0],arreglo[2]);
 	__m128i minp2=_mm_min_epi32(arreglo[1],arreglo[3]);
@@ -104,7 +104,7 @@ int main(int argc, char** argv)
 	timer2.stop();
 	std::cout << "Time to transfer to main memory: " << timer2.elapsed() << std::endl;
 	timer3.start();
-	__m128i Registros[4];
+	__m128i[4] Registros;
 	for (size_t i=0;i<m2._nfil;i+=16){
 		Registros[0]=_mm_setr_epi32(m2._matrixInMemory[i],m2._matrixInMemory[i+1],m2._matrixInMemory[i+2],m2._matrixInMemory[i+3]);
 		Registros[1]=_mm_setr_epi32(m2._matrixInMemory[i+4],m2._matrixInMemory[i+5],m2._matrixInMemory[i+6],m2._matrixInMemory[i+7]);
