@@ -242,7 +242,7 @@ int main(int argc, char** argv)
 			int div=i/16;
 			for (size_t k=(div*16)+16;k<m2._nfil-16;k+=16){
 				if(k+j==999){
-					std::cout << "999" << std::endl
+					std::cout << "999" << std::endl;
 				}
 				/*
 				if (m2._matrixInMemory[i]>m2._matrixInMemory[k+j]){
