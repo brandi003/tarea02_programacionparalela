@@ -174,10 +174,8 @@ int main(int argc, char** argv)
 		Registros[3]=_mm_setr_epi32(m2._matrixInMemory[i+12],m2._matrixInMemory[i+13],m2._matrixInMemory[i+14],m2._matrixInMemory[i+15]);
 		sorting_network(Registros);
 		traspuesta(Registros);
-		print_matriz(Registros);
 		bitonic_merge_network(&Registros[0],&Registros[1],&Registros[2],&Registros[3]);
 		traspuesta(Registros);
-		print_matriz(Registros);
 		m2._matrixInMemory[0]=_mm_extract_epi32(Registros[0],0);
 		m2._matrixInMemory[1]=_mm_extract_epi32(Registros[0],1);
 		m2._matrixInMemory[2]=_mm_extract_epi32(Registros[0],2);
