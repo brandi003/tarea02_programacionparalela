@@ -41,6 +41,8 @@ void sorting_network(__m128i* Registros){
 
 }
 
+
+
 void traspuesta(__m128i* Registros){
 	__m128i sub1 = _mm_unpackhi_epi32(Registros[0],Registros[1]);
 	__m128i sub2 = _mm_unpackhi_epi32(Registros[2],Registros[3]);
@@ -55,6 +57,41 @@ void traspuesta(__m128i* Registros){
 
 void bitonic_sorter(__m128i Registro1,__m128i Registro2){
 	Registro2=_mm_shuffle_epi32(Registro2, _MM_SHUFFLE(0, 1, 2, 3));
+	__m128i aux=_mm_min_epi32(Registro1,Registro2);
+	Registro2=_mm_max_epi32(Registro1,Registro2);
+	Registro1=aux;
+
+
+	uint32_t m1=_mm_extract_epi32(Registro1,0);
+	uint32_t m2=_mm_extract_epi32(Registro1,1);
+	uint32_t m3=_mm_extract_epi32(Registro1,2);
+	uint32_t m4=_mm_extract_epi32(Registro1,3);
+	uint32_t M1=_mm_extract_epi32(Registro2,0);
+	uint32_t M2=_mm_extract_epi32(Registro2,1);
+	uint32_t M3=_mm_extract_epi32(Registro2,2);
+	uint32_t M4=_mm_extract_epi32(Registro2,3);
+	Registro1=_mm_setr_epi32(m1,M1,m2,M2);
+	Registro2=_mm_setr_epi32(m3,M3,m4,M4);
+	__m128i aux=_mm_min_epi32(Registro1,Registro2);
+	Registro2=_mm_max_epi32(Registro1,Registro2);
+	Registro1=aux;
+
+
+	uint32_t m1=_mm_extract_epi32(Registro1,0);
+	uint32_t m2=_mm_extract_epi32(Registro1,1);
+	uint32_t m3=_mm_extract_epi32(Registro1,2);
+	uint32_t m4=_mm_extract_epi32(Registro1,3);
+	uint32_t M1=_mm_extract_epi32(Registro2,0);
+	uint32_t M2=_mm_extract_epi32(Registro2,1);
+	uint32_t M3=_mm_extract_epi32(Registro2,2);
+	uint32_t M4=_mm_extract_epi32(Registro2,3);
+	Registro1=_mm_setr_epi32(m1,M1,m2,M2);
+	Registro2=_mm_setr_epi32(m3,M3.m4,M4);
+	__m128i aux=_mm_min_epi32(Registro1,Registro2);
+	Registro2=_mm_max_epi32(Registro1,Registro2);
+	Registro1=aux;
+
+
 }
 
 void print_matriz(__m128i* Registros){
@@ -126,8 +163,10 @@ int main(int argc, char** argv)
 		Registros[2]=_mm_setr_epi32(m2._matrixInMemory[i+8],m2._matrixInMemory[i+9],m2._matrixInMemory[i+10],m2._matrixInMemory[i+11]);
 		Registros[3]=_mm_setr_epi32(m2._matrixInMemory[i+12],m2._matrixInMemory[i+13],m2._matrixInMemory[i+14],m2._matrixInMemory[i+15]);
 		sorting_network(Registros);
-		print_matriz(Registros);
 		traspuesta(Registros);
+		print_matriz(Registros);
+		bitonic_sorter(Registros[0],Registros[1]);
+		bitonic_sorter(Registros[2],Registros[3]);
 		print_matriz(Registros);
 		
 
