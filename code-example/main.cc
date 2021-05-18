@@ -221,6 +221,11 @@ int main(int argc, char** argv)
 		m2._matrixInMemory[i+14]=_mm_extract_epi32(Registros[3],2);
 		m2._matrixInMemory[i+15]=_mm_extract_epi32(Registros[3],3);
 	}
+
+
+	std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
+
+	/*
 	for (size_t k = 0;k < m2._nfil;k++){
 		int cont=0;
 		int val=m2._nfil/16;
@@ -238,7 +243,7 @@ int main(int argc, char** argv)
 				}
 			}
 		}
-	}
+	}*/
 
 
 	/*shell sort
