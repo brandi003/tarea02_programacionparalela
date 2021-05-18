@@ -164,7 +164,7 @@ int main(int argc, char** argv)
 		float conttimer3=0;
 		float conttimer4=0;
 		size_t m;
-		for (m=0;m<10;m++){
+		for (m=0;m<100;m++){
 		std::string fileName;
 		
 		//////////////////////////////////////////
