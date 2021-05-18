@@ -223,9 +223,8 @@ int main(int argc, char** argv)
 	}
 
 
-	std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
+	//std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
 
-	/*
 	for (size_t k = 0;k < m2._nfil;k++){
 		int cont=0;
 		int val=m2._nfil/16;
@@ -243,7 +242,7 @@ int main(int argc, char** argv)
 				}
 			}
 		}
-	}*/
+	}
 
 
 	/*shell sort
