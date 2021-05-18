@@ -55,7 +55,7 @@ void traspuesta(__m128i* Registros){
 	Registros[3]=_mm_unpackhi_epi64(sub1,sub2);
 }
 
-void bitonic_sorter(__m128i Registro1,__m128i Registro2){
+void bitonic_sorter(__m128i* Registro1,__m128i* Registro2){
 	Registro2=_mm_shuffle_epi32(Registro2, _MM_SHUFFLE(0, 1, 2, 3));
 	__m128i aux=_mm_min_epi32(Registro1,Registro2);
 	Registro2=_mm_max_epi32(Registro1,Registro2);
@@ -165,11 +165,7 @@ int main(int argc, char** argv)
 		sorting_network(Registros);
 		traspuesta(Registros);
 		print_matriz(Registros);
-		__m128i prueba=Registros[0];
-		__m128i prueba2=Registros[1];
-		bitonic_sorter(prueba,prueba2);
-		Registros[0]=prueba;
-		Registros[1]=prueba2;
+		bitonic_sorter(&Registros[0],&Registros[1]);
 		print_matriz(Registros);
 		
 
