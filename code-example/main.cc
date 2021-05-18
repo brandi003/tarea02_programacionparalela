@@ -241,7 +241,9 @@ int main(int argc, char** argv)
 		for (size_t j=0;j<16;j++){
 			int div=i/16;
 			for (size_t k=(div*16)+16;k<m2._nfil-16;k+=16){
-				std::cout << k+j << std::endl;
+				if(k+j==999){
+					std::cout << "999" << std::endl
+				}
 				/*
 				if (m2._matrixInMemory[i]>m2._matrixInMemory[k+j]){
 					auto aux= m2._matrixInMemory[i];
@@ -250,6 +252,7 @@ int main(int argc, char** argv)
 				}*/
 			}
 		}
+		break;
 	}
 
 
