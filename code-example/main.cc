@@ -61,14 +61,14 @@ void bitonic_sorter(__m128i* Registro1,__m128i* Registro2){
 	*Registro2=_mm_max_epi32(*Registro1,*Registro2);
 	*Registro1=aux;
 
-	*Registro1=_mm_shuffle_epi32(*Registro2, _MM_SHUFFLE(0, 1, 2, 3));
+	*Registro1=_mm_shuffle_epi32(*Registro1, _MM_SHUFFLE(0, 1, 2, 3));
 	*Registro2=_mm_shuffle_epi32(*Registro2, _MM_SHUFFLE(0, 1, 2, 3));
 	auto sub1 = _mm_unpackhi_epi32(*Registro1,*Registro2);
 	auto sub2 = _mm_unpacklo_epi32(*Registro1,*Registro2);
 	*Registro1=_mm_min_epi32(sub1,sub2);
 	*Registro2=_mm_max_epi32(sub1,sub2);
 
-	*Registro1=_mm_shuffle_epi32(*Registro2, _MM_SHUFFLE(0, 1, 2, 3));
+	*Registro1=_mm_shuffle_epi32(*Registro1, _MM_SHUFFLE(0, 1, 2, 3));
 	*Registro2=_mm_shuffle_epi32(*Registro2, _MM_SHUFFLE(0, 1, 2, 3));
 	sub1 = _mm_unpackhi_epi32(*Registro1,*Registro2);
 	sub2 = _mm_unpacklo_epi32(*Registro1,*Registro2);
