@@ -166,7 +166,6 @@ int main(int argc, char** argv)
 		traspuesta(Registros);
 		print_matriz(Registros);
 		bitonic_sorter(Registros[0],Registros[1]);
-		bitonic_sorter(Registros[2],Registros[3]);
 		print_matriz(Registros);
 		
 
