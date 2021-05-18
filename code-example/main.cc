@@ -17,7 +17,7 @@
 //                ...................
 //
 /////////////////////////////////////////////////////////////////////////////////
-void fun(std::vector<double> &, double );
+
 void uso(std::string pname)
 {
 	std::cerr << "Uso: " << pname << " --fname MATRIX_FILE" << std::endl;
@@ -225,7 +225,7 @@ int main(int argc, char** argv)
 
 
 	// 1) Create n empty buckets
-    vector<float> b[m2._nfil];
+    uint32_t b[m2._nfil];
  
     // 2) Put array elements
     // in different buckets
