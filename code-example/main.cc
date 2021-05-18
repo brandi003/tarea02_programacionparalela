@@ -273,7 +273,7 @@ int main(int argc, char** argv)
 	
 	////////////////////////////////////////////////////////////////
 	// Mostrar los 5 primeros elementos de la m2 ordenada.
-	for(size_t i=0; i< 50; i++){		
+	for(size_t i=0; i< 5; i++){		
 		std::cout <<  m2._matrixInMemory[i] << std::endl;
 	}
 	std::cout << "-------------------------------"<< std::endl;
