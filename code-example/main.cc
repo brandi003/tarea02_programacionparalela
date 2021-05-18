@@ -228,19 +228,21 @@ int main(int argc, char** argv)
 	for (size_t k = 0;k < m2._nfil;k++){
 		bool flag=false;
 		int var=0;
-		for (size_t i=k+var; i<m2._nfil ; i+=16){
+		for (size_t i=k; i<m2._nfil ; i+=16){
 			if(m2._matrixInMemory[k]>m2._matrixInMemory[i]){
 				uint32_t aux=m2._matrixInMemory[k];
 				m2._matrixInMemory[k]=m2._matrixInMemory[i];
 				m2._matrixInMemory[i]=aux;
-				flag=true;
+				for(size_t j=0;j<k%16;j++){
+					if(m2._matrixInMemory[k]>m2._matrixInMemory[j]){
+						uint32_t aux=m2._matrixInMemory[k];
+						m2._matrixInMemory[k]=m2._matrixInMemory[j];
+						m2._matrixInMemory[j]=aux;
+					}else{
+						break;
+					}
+				continue;
 			}
-		}
-		if(flag){
-			k--;
-			var++;
-		}else{
-			var=0;
 		}
 	}
 
