@@ -233,7 +233,7 @@ int main(int argc, char** argv)
 				uint32_t aux=m2._matrixInMemory[k];
 				m2._matrixInMemory[k]=m2._matrixInMemory[i];
 				m2._matrixInMemory[i]=aux;
-				for(size_t j=0;j<k%16;j++){
+				for(size_t j=0;j<16-k%16;j++){
 					if(m2._matrixInMemory[k]>m2._matrixInMemory[j]){
 						uint32_t aux=m2._matrixInMemory[k];
 						m2._matrixInMemory[k]=m2._matrixInMemory[j];
