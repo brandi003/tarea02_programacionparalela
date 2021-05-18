@@ -104,16 +104,16 @@ void bitonic_merge_network(__m128i* Registro1,__m128i* Registro2,__m128i* Regist
 	bitonic_sorter(&*Registro3,&*Registro4);
 }
 
-void print_matriz(__m128i* Registros){
-	std::cout << "-----------------Inicio de la matriz---------------------" << std::endl;
+void print_m2(__m128i* Registros){
+	std::cout << "-----------------Inicio de la m2---------------------" << std::endl;
 	std::cout << "[" << _mm_extract_epi32(Registros[0],0) << "," << _mm_extract_epi32(Registros[0],1) << "," << _mm_extract_epi32(Registros[0],2) << "," << _mm_extract_epi32(Registros[0],3) << "]" << std::endl;
 	std::cout << "[" << _mm_extract_epi32(Registros[1],0) << "," << _mm_extract_epi32(Registros[1],1) << "," << _mm_extract_epi32(Registros[1],2) << "," << _mm_extract_epi32(Registros[1],3) << "]" << std::endl;
 	std::cout << "[" << _mm_extract_epi32(Registros[2],0) << "," << _mm_extract_epi32(Registros[2],1) << "," << _mm_extract_epi32(Registros[2],2) << "," << _mm_extract_epi32(Registros[2],3) << "]" << std::endl;
 	std::cout << "[" << _mm_extract_epi32(Registros[3],0) << "," << _mm_extract_epi32(Registros[3],1) << "," << _mm_extract_epi32(Registros[3],2) << "," << _mm_extract_epi32(Registros[3],3) << "]" << std::endl;
-	std::cout << "-----------------Termino de la matriz---------------------" << std::endl;
+	std::cout << "-----------------Termino de la m2---------------------" << std::endl;
 }
 
-int shellSort(MatrixToMem matriz, int n)
+int shellSort(MatrixToMem m2, int n)
 {
     // Start with a big gap, then reduce the gap
     for (uint32_t gap = n/2; gap > 0; gap /= 2)
@@ -126,16 +126,16 @@ int shellSort(MatrixToMem matriz, int n)
         {
             // add a[i] to the elements that have been gap sorted
             // save a[i] in temp and make a hole at position i
-            uint32_t temp = matriz._matrixInMemory[i];
+            uint32_t temp = m2._matrixInMemory[i];
  
             // shift earlier gap-sorted elements up until the correct
             // location for a[i] is found
             uint32_t j;           
-            for (j = i; j >= gap && matriz._matrixInMemory[j - gap] > temp; j -= gap)
-                matriz._matrixInMemory[j] = matriz._matrixInMemory[j - gap];
+            for (j = i; j >= gap && m2._matrixInMemory[j - gap] > temp; j -= gap)
+                m2._matrixInMemory[j] = m2._matrixInMemory[j - gap];
              
             //  put temp (the original a[i]) in its correct location
-            matriz._matrixInMemory[j] = temp;
+            m2._matrixInMemory[j] = temp;
         }
     }
     return 0;
@@ -161,7 +161,7 @@ int main(int argc, char** argv)
 	
 	Timing timer0, timer1;
 	////////////////////////////////////////////////////////////////
-	// Transferir la matriz del archivo fileName a memoria principal
+	// Transferir la m2 del archivo fileName a memoria principal
 	timer0.start();
 	MatrixToMem m1(fileName);
 	timer0.stop();
@@ -175,7 +175,7 @@ int main(int argc, char** argv)
 	std::cout << "Time to sort in main memory: " << timer1.elapsed() << std::endl;
 	
 	////////////////////////////////////////////////////////////////
-	// Mostrar los 5 primeros elementos de la matriz ordenada.
+	// Mostrar los 5 primeros elementos de la m2 ordenada.
 	for(size_t i=0; i< 5; i++){		
 		std::cout <<  m1._matrixInMemory[i] << std::endl;
 	}
@@ -188,7 +188,7 @@ int main(int argc, char** argv)
 
 	Timing timer2, timer3;
 	////////////////////////////////////////////////////////////////
-	// Transferir la matriz del archivo fileName a memoria principal
+	// Transferir la m2 del archivo fileName a memoria principal
 	timer2.start();
 	MatrixToMem m2(fileName);
 	timer2.stop();
@@ -222,12 +222,33 @@ int main(int argc, char** argv)
 		m2._matrixInMemory[15]=_mm_extract_epi32(Registros[3],3);
 	}
 	timer3.stop();
-	shellSort(m2, m2._nfil);
+	for (uint32_t gap = m2._nfil/2; gap > 0; gap /= 2)
+    {
+        // Do a gapped insertion sort for this gap size.
+        // The first gap elements a[0..gap-1] are already in gapped order
+        // keep adding one more element until the entire array is
+        // gap sorted
+        for (uint32_t i = gap; i < m2._nfil; i += 1)
+        {
+            // add a[i] to the elements that have been gap sorted
+            // save a[i] in temp and make a hole at position i
+            uint32_t temp = m2._matrixInMemory[i];
+ 
+            // shift earlier gap-sorted elements up until the correct
+            // location for a[i] is found
+            uint32_t j;           
+            for (j = i; j >= gap && m2._matrixInMemory[j - gap] > temp; j -= gap)
+                m2._matrixInMemory[j] = m2._matrixInMemory[j - gap];
+             
+            //  put temp (the original a[i]) in its correct location
+            m2._matrixInMemory[j] = temp;
+        }
+    }
 	
 	std::cout << "Time to sort in main memory: " << timer3.elapsed() << std::endl;
 	
 	////////////////////////////////////////////////////////////////
-	// Mostrar los 5 primeros elementos de la matriz ordenada.
+	// Mostrar los 5 primeros elementos de la m2 ordenada.
 	for(size_t i=0; i< 5; i++){		
 		std::cout <<  m2._matrixInMemory[i] << std::endl;
 	}
