@@ -201,7 +201,7 @@ int main(int argc, char** argv)
 //////////////////////////////////////////////////////////////////////////////
 	///////////////ejecucion de bubble sort con intrinsecas///////////
 
-	Timing timer2, timer3;
+	Timing timer2, timer3,timer4;
 	////////////////////////////////////////////////////////////////
 	// Transferir la m2 del archivo fileName a memoria principal
 	timer2.start();
@@ -239,10 +239,12 @@ int main(int argc, char** argv)
 
 
 
-	//std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
+	timer3.stop();
+	timer4.start();
+	std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
+	timer4.stop();
 
-
-	
+	/*shell sort
 	for (uint32_t gap = m2._nfil/2; gap > 0; gap /= 2)
     {
         // Do a gapped insertion sort for this gap size.
@@ -264,10 +266,10 @@ int main(int argc, char** argv)
             //  put temp (the original a[i]) in its correct location
             m2._matrixInMemory[j] = temp;
         }
-    }
-	timer3.stop();
+    }*/
+	std::cout << "Time to sort in main memory 16bit vectorial: " << timer3.elapsed() << std::endl;
+	std::cout << "Time to sort in main memory: " << timer4.elapsed() << std::endl;
 	
-	std::cout << "Time to sort in main memory: " << timer3.elapsed() << std::endl;
 	
 	////////////////////////////////////////////////////////////////
 	// Mostrar los 5 primeros elementos de la m2 ordenada.
