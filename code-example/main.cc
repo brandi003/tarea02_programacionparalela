@@ -226,20 +226,18 @@ int main(int argc, char** argv)
 	//std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
 
 	for (size_t k = 0;k < m2._nfil;k++){
-		int cont=0;
-		int val=m2._nfil/16;
-		for (size_t i=k; i<16-k ; i++){
-			if(cont==val*2){
-				break;
+		for (size_t i=k; i<16 ; i+=16){
+			if(m2._matrixInMemory[k]>m2._matrixInMemory[i]){
+				uint32_t aux=m2._matrixInMemory[k];
+				m2._matrixInMemory[k]=m2._matrixInMemory[i];
+				m2._matrixInMemory[i]=aux;
 			}
-			for (size_t j =0 ; j < m2._nfil ; j+=16){
-				cont=cont+1;
-				if(m2._matrixInMemory[k]>m2._matrixInMemory[i+j]){
-					cont=0;
-					uint32_t aux=m2._matrixInMemory[k];
-					m2._matrixInMemory[k]=m2._matrixInMemory[i+j];
-					m2._matrixInMemory[i+j]=aux;
-				}
+		}
+		for (size_t i=k+1; i<16 ; i+=16){
+			if(m2._matrixInMemory[k]>m2._matrixInMemory[i]){
+				uint32_t aux=m2._matrixInMemory[k];
+				m2._matrixInMemory[k]=m2._matrixInMemory[i];
+				m2._matrixInMemory[i]=aux;
 			}
 		}
 	}
