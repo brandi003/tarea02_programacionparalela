@@ -239,17 +239,12 @@ int main(int argc, char** argv)
 
 	for (size_t i=0;i<m2._nfil;i++){
 		for (size_t j=0;j<16;j++){
-			bool flag=true;
 			for (size_t k=0;j<m2._nfil-16;k+=16){
 				if (m2._matrixInMemory[i]>m2._matrixInMemory[j+k]){
 					auto aux= m2._matrixInMemory[i];
 					m2._matrixInMemory[i]=m2._matrixInMemory[j+k];
 					m2._matrixInMemory[i]=aux;
-					bool flag=false;
 				}
-			}
-			if(flag){
-				break;
 			}
 		}
 	}
