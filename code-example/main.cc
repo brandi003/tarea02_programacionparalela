@@ -221,6 +221,25 @@ int main(int argc, char** argv)
 		m2._matrixInMemory[14]=_mm_extract_epi32(Registros[3],2);
 		m2._matrixInMemory[15]=_mm_extract_epi32(Registros[3],3);
 	}
+	for (size_t k = 0;k < m2._nfil;k++){
+		int cont=0;
+		int val=m2._nfil/16;
+		for (size_t i=0; i<16 ; i++){
+			if(cont==val){
+				break;
+			}
+			for (size_t j =16 ; j < m2._nfil ; j+=16){
+				if(m2._matrixInMemory[k]>m2._matrixInMemory[i+j]){
+					uint32_t aux=m2._matrixInMemory[k];
+					m2._matrixInMemory[k]=m2._matrixInMemory[i+j];
+					m2._matrixInMemory[i+j]=aux;
+				}
+			}
+		}
+	}
+
+
+	/*shell sort
 	for (uint32_t gap = m2._nfil/2; gap > 0; gap /= 2)
     {
         // Do a gapped insertion sort for this gap size.
@@ -242,14 +261,14 @@ int main(int argc, char** argv)
             //  put temp (the original a[i]) in its correct location
             m2._matrixInMemory[j] = temp;
         }
-    }
+    }*/
 	timer3.stop();
 	
 	std::cout << "Time to sort in main memory: " << timer3.elapsed() << std::endl;
 	
 	////////////////////////////////////////////////////////////////
 	// Mostrar los 5 primeros elementos de la m2 ordenada.
-	for(size_t i=0; i< 5; i++){		
+	for(size_t i=0; i< 50; i++){		
 		std::cout <<  m2._matrixInMemory[i] << std::endl;
 	}
 	std::cout << "-------------------------------"<< std::endl;
