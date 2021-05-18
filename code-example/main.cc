@@ -233,7 +233,7 @@ int main(int argc, char** argv)
 				uint32_t aux=m2._matrixInMemory[k];
 				m2._matrixInMemory[k]=m2._matrixInMemory[i];
 				m2._matrixInMemory[i]=aux;
-				flag=true
+				flag=true;
 			}
 		}
 		if(flag){
