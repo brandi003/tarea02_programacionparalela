@@ -6,7 +6,6 @@
 #include <MatrixToMem.hpp>
 #include <immintrin.h>
 #include <emmintrin.h>
-#include <vector>
 #include <iostream>
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +61,22 @@ void bitonic_sorter(__m128i* Registro1,__m128i* Registro2){
 	*Registro2=_mm_max_epi32(*Registro1,*Registro2);
 	*Registro1=aux;
 
+	*Registro1=_mm_shuffle_epi32(*Registro2, _MM_SHUFFLE(0, 1, 2, 3));
+	*Registro2=_mm_shuffle_epi32(*Registro2, _MM_SHUFFLE(0, 1, 2, 3));
+	auto sub1 = _mm_unpackhi_epi32(Registro1,Registro2);
+	auto sub2 = _mm_unpacklo_epi32(Registros1,Registros2);
+	*Registro1=_mm_min_epi32(sub1,sub2);
+	*Registro2=_mm_max_epi32(sub1,sub2);
 
+	*Registro1=_mm_shuffle_epi32(*Registro2, _MM_SHUFFLE(0, 1, 2, 3));
+	*Registro2=_mm_shuffle_epi32(*Registro2, _MM_SHUFFLE(0, 1, 2, 3));
+	sub1 = _mm_unpackhi_epi32(Registro1,Registro2);
+	sub2 = _mm_unpacklo_epi32(Registros1,Registros2);
+	*Registro1=_mm_min_epi32(sub1,sub2);
+	*Registro2=_mm_max_epi32(sub1,sub2);
+
+
+	/*
 	uint32_t m1=_mm_extract_epi32(*Registro1,0);
 	uint32_t m2=_mm_extract_epi32(*Registro1,1);
 	uint32_t m3=_mm_extract_epi32(*Registro1,2);
@@ -90,7 +104,7 @@ void bitonic_sorter(__m128i* Registro1,__m128i* Registro2){
 	*Registro2=_mm_setr_epi32(m3,M3,m4,M4);
 	aux=_mm_min_epi32(*Registro1,*Registro2);
 	*Registro2=_mm_max_epi32(*Registro1,*Registro2);
-	*Registro1=aux;
+	*Registro1=aux;*/
 
 
 }
@@ -224,29 +238,8 @@ int main(int argc, char** argv)
 	}
 
 
-	// 1) Create n empty buckets
-    uint32_t b[m2._nfil];
- 
-    // 2) Put array elements
-    // in different buckets
-    for (int i = 0; i < m2._nfil; i++) {
-        int bi = m2._nfil * m2._matrixInMemory[i]; // Index in bucket
-        b[bi].push_back(m2._matrixInMemory[i]);
-    }
- 
-    // 3) Sort individual buckets
-    for (int i = 0; i < m2._nfil; i++)
-        sort(b[i].begin(), b[i].end());
- 
-    // 4) Concatenate all buckets into arr[]
-    int index = 0;
-    for (int i = 0; i < m2._nfil; i++)
-        for (int j = 0; j < b[i].size(); j++)
-            m2._matrixInMemory[index++] = b[i][j];
 
-
-
-	//std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
+	std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
 
 
 	/*shell sort
