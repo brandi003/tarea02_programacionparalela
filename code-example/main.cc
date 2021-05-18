@@ -239,8 +239,9 @@ int main(int argc, char** argv)
 
 	for (size_t i=0;i<m2._nfil;i++){
 		for (size_t j=0;j<16;j++){
-			for (size_t k=0;k<m2._nfil-16;k+=16){
-				if (m2._matrixInMemory[i]>m2._matrixInMemory[j+k]){
+			for (size_t k=i;k<m2._nfil-16;k+=16){
+				int div=i/16
+				if (m2._matrixInMemory[i]>m2._matrixInMemory[(div*16)+16]){
 					auto aux= m2._matrixInMemory[i];
 					m2._matrixInMemory[i]=m2._matrixInMemory[j+k];
 					m2._matrixInMemory[i]=aux;
@@ -283,7 +284,7 @@ int main(int argc, char** argv)
 	
 	////////////////////////////////////////////////////////////////
 	// Mostrar los 5 primeros elementos de la m2 ordenada.
-	for(size_t i=0; i< 50; i++){		
+	for(size_t i=0; i< 10; i++){		
 		std::cout <<  m2._matrixInMemory[i] << std::endl;
 	}
 	std::cout << "-------------------------------"<< std::endl;
