@@ -225,11 +225,13 @@ int main(int argc, char** argv)
 		int cont=0;
 		int val=m2._nfil/16;
 		for (size_t i=k; i<16 ; i++){
-			if(cont==val){
+			if(cont==val*2){
 				break;
 			}
 			for (size_t j =16 ; j < m2._nfil ; j+=16){
+				cont=cont+1
 				if(m2._matrixInMemory[k]>m2._matrixInMemory[i+j]){
+					cont=0
 					uint32_t aux=m2._matrixInMemory[k];
 					m2._matrixInMemory[k]=m2._matrixInMemory[i+j];
 					m2._matrixInMemory[i+j]=aux;
@@ -243,7 +245,7 @@ int main(int argc, char** argv)
 	for (uint32_t gap = m2._nfil/2; gap > 0; gap /= 2)
     {
         // Do a gapped insertion sort for this gap size.
-        // The first gap elements a[0..gap-1] are already in gapped order
+        // The first gap elements a[0..gap-1] sare already in gapped order
         // keep adding one more element until the entire array is
         // gap sorted
         for (uint32_t i = gap; i < m2._nfil; i += 1)
