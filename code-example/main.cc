@@ -113,7 +113,7 @@ void print_matriz(__m128i* Registros){
 	std::cout << "-----------------Termino de la matriz---------------------" << std::endl;
 }
 
-int shellSort(MatrixToMem matriz, int n)
+int shellSort(uint32_t* matriz, int n)
 {
     // Start with a big gap, then reduce the gap
     for (int gap = n/2; gap > 0; gap /= 2)
