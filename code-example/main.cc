@@ -95,7 +95,7 @@ void bitonic_sorter(__m128i* Registro1,__m128i* Registro2){
 }
 
 void bitonic_merge_network(__m128i* Registro1,__m128i* Registro2,__m128i* Registro3,__m128i* Registro4){
-	bitonic_sorter(&Registro1,&Registro2);
+	bitonic_sorter(&*Registro1,&*Registro2);
 	bitonic_sorter(&Registro3,&Registro4);
 
 	bitonic_sorter(&Registro2,&Registro3);
