@@ -94,6 +94,16 @@ void bitonic_sorter(__m128i* Registro1,__m128i* Registro2){
 
 }
 
+void bitonic_merge_network(__m128i* Registro1,__m128i* Registro2,__m128i* Registro3,__m128i* Registro4){
+	bitonic_sorter(*Registro1,*Registro2);
+	bitonic_sorter(*Registro3,*Registro4);
+
+	bitonic_sorter(*Registro2,*Registro3);
+
+	bitonic_sorter(*Registro1,*Registro2);
+	bitonic_sorter(*Registro3,*Registro4);
+}
+
 void print_matriz(__m128i* Registros){
 	std::cout << "-----------------Inicio de la matriz---------------------" << std::endl;
 	std::cout << "[" << _mm_extract_epi32(Registros[0],0) << "," << _mm_extract_epi32(Registros[0],1) << "," << _mm_extract_epi32(Registros[0],2) << "," << _mm_extract_epi32(Registros[0],3) << "]" << std::endl;
@@ -165,7 +175,7 @@ int main(int argc, char** argv)
 		sorting_network(Registros);
 		traspuesta(Registros);
 		print_matriz(Registros);
-		bitonic_sorter(&Registros[0],&Registros[1]);
+		bitonic_merge_network(&Registros[0],&Registros[1],&Registros[2],&Registros[3]);
 		print_matriz(Registros);
 		
 
