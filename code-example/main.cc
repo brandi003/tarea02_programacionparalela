@@ -221,7 +221,6 @@ int main(int argc, char** argv)
 		m2._matrixInMemory[14]=_mm_extract_epi32(Registros[3],2);
 		m2._matrixInMemory[15]=_mm_extract_epi32(Registros[3],3);
 	}
-	timer3.stop();
 	for (uint32_t gap = m2._nfil/2; gap > 0; gap /= 2)
     {
         // Do a gapped insertion sort for this gap size.
@@ -244,6 +243,7 @@ int main(int argc, char** argv)
             m2._matrixInMemory[j] = temp;
         }
     }
+	timer3.stop();
 	
 	std::cout << "Time to sort in main memory: " << timer3.elapsed() << std::endl;
 	
