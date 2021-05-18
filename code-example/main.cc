@@ -17,7 +17,7 @@
 //                ...................
 //
 /////////////////////////////////////////////////////////////////////////////////
-
+void fun(std::vector<double> &, double );
 void uso(std::string pname)
 {
 	std::cerr << "Uso: " << pname << " --fname MATRIX_FILE" << std::endl;
