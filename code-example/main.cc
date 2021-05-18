@@ -204,27 +204,27 @@ int main(int argc, char** argv)
 		traspuesta(Registros);
 		bitonic_merge_network(&Registros[0],&Registros[1],&Registros[2],&Registros[3]);
 		traspuesta(Registros);
-		m2._matrixInMemory[0]=_mm_extract_epi32(Registros[0],0);
-		m2._matrixInMemory[1]=_mm_extract_epi32(Registros[0],1);
-		m2._matrixInMemory[2]=_mm_extract_epi32(Registros[0],2);
-		m2._matrixInMemory[3]=_mm_extract_epi32(Registros[0],3);
-		m2._matrixInMemory[4]=_mm_extract_epi32(Registros[1],0);
-		m2._matrixInMemory[5]=_mm_extract_epi32(Registros[1],1);
-		m2._matrixInMemory[6]=_mm_extract_epi32(Registros[1],2);
-		m2._matrixInMemory[7]=_mm_extract_epi32(Registros[1],3);
-		m2._matrixInMemory[8]=_mm_extract_epi32(Registros[2],0);
-		m2._matrixInMemory[9]=_mm_extract_epi32(Registros[2],1);
-		m2._matrixInMemory[10]=_mm_extract_epi32(Registros[2],2);
-		m2._matrixInMemory[11]=_mm_extract_epi32(Registros[2],3);
-		m2._matrixInMemory[12]=_mm_extract_epi32(Registros[3],0);
-		m2._matrixInMemory[13]=_mm_extract_epi32(Registros[3],1);
-		m2._matrixInMemory[14]=_mm_extract_epi32(Registros[3],2);
-		m2._matrixInMemory[15]=_mm_extract_epi32(Registros[3],3);
+		m2._matrixInMemory[i]=_mm_extract_epi32(Registros[0],0);
+		m2._matrixInMemory[i+1]=_mm_extract_epi32(Registros[0],1);
+		m2._matrixInMemory[i+2]=_mm_extract_epi32(Registros[0],2);
+		m2._matrixInMemory[i+3]=_mm_extract_epi32(Registros[0],3);
+		m2._matrixInMemory[i+4]=_mm_extract_epi32(Registros[1],0);
+		m2._matrixInMemory[i+5]=_mm_extract_epi32(Registros[1],1);
+		m2._matrixInMemory[i+6]=_mm_extract_epi32(Registros[1],2);
+		m2._matrixInMemory[i+7]=_mm_extract_epi32(Registros[1],3);
+		m2._matrixInMemory[i+8]=_mm_extract_epi32(Registros[2],0);
+		m2._matrixInMemory[i+9]=_mm_extract_epi32(Registros[2],1);
+		m2._matrixInMemory[i+10]=_mm_extract_epi32(Registros[2],2);
+		m2._matrixInMemory[i+11]=_mm_extract_epi32(Registros[2],3);
+		m2._matrixInMemory[i+12]=_mm_extract_epi32(Registros[3],0);
+		m2._matrixInMemory[i+13]=_mm_extract_epi32(Registros[3],1);
+		m2._matrixInMemory[i+14]=_mm_extract_epi32(Registros[3],2);
+		m2._matrixInMemory[i+15]=_mm_extract_epi32(Registros[3],3);
 	}
 	for (size_t k = 0;k < m2._nfil;k++){
 		int cont=0;
 		int val=m2._nfil/16;
-		for (size_t i=k; i<16 ; i++){
+		for (size_t i=0; i<16 ; i++){
 			if(cont==val*2){
 				break;
 			}
