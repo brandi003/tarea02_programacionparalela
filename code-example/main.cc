@@ -56,40 +56,40 @@ void traspuesta(__m128i* Registros){
 }
 
 void bitonic_sorter(__m128i* Registro1,__m128i* Registro2){
-	*Registro2=_mm_shuffle_epi32(*Registro2, _MM_SHUFFLE(0, 1, 2, 3));
-	__m128i aux=_mm_min_epi32(Registro1,Registro2);
-	Registro2=_mm_max_epi32(Registro1,Registro2);
-	Registro1=aux;
+	**Registro2=_mm_shuffle_epi32(**Registro2, _MM_SHUFFLE(0, 1, 2, 3));
+	__m128i* aux=_mm_min_epi32(**Registro1,**Registro2);
+	*Registro2=_mm_max_epi32(*Registro1,*Registro2);
+	*Registro1=aux;
 
 
-	uint32_t m1=_mm_extract_epi32(Registro1,0);
-	uint32_t m2=_mm_extract_epi32(Registro1,1);
-	uint32_t m3=_mm_extract_epi32(Registro1,2);
-	uint32_t m4=_mm_extract_epi32(Registro1,3);
-	uint32_t M1=_mm_extract_epi32(Registro2,0);
-	uint32_t M2=_mm_extract_epi32(Registro2,1);
-	uint32_t M3=_mm_extract_epi32(Registro2,2);
-	uint32_t M4=_mm_extract_epi32(Registro2,3);
-	Registro1=_mm_setr_epi32(m1,M1,m2,M2);
-	Registro2=_mm_setr_epi32(m3,M3,m4,M4);
-	aux=_mm_min_epi32(Registro1,Registro2);
-	Registro2=_mm_max_epi32(Registro1,Registro2);
-	Registro1=aux;
+	uint32_t m1=_mm_extract_epi32(*Registro1,0);
+	uint32_t m2=_mm_extract_epi32(*Registro1,1);
+	uint32_t m3=_mm_extract_epi32(*Registro1,2);
+	uint32_t m4=_mm_extract_epi32(*Registro1,3);
+	uint32_t M1=_mm_extract_epi32(*Registro2,0);
+	uint32_t M2=_mm_extract_epi32(*Registro2,1);
+	uint32_t M3=_mm_extract_epi32(*Registro2,2);
+	uint32_t M4=_mm_extract_epi32(*Registro2,3);
+	*Registro1=_mm_setr_epi32(m1,M1,m2,M2);
+	*Registro2=_mm_setr_epi32(m3,M3,m4,M4);
+	aux=_mm_min_epi32(*Registro1,*Registro2);
+	*Registro2=_mm_max_epi32(*Registro1,*Registro2);
+	*Registro1=aux;
 
 
-	m1=_mm_extract_epi32(Registro1,0);
-	m2=_mm_extract_epi32(Registro1,1);
-	m3=_mm_extract_epi32(Registro1,2);
-	m4=_mm_extract_epi32(Registro1,3);
-	M1=_mm_extract_epi32(Registro2,0);
-	M2=_mm_extract_epi32(Registro2,1);
-	M3=_mm_extract_epi32(Registro2,2);
-	M4=_mm_extract_epi32(Registro2,3);
-	Registro1=_mm_setr_epi32(m1,M1,m2,M2);
-	Registro2=_mm_setr_epi32(m3,M3,m4,M4);
-	aux=_mm_min_epi32(Registro1,Registro2);
-	Registro2=_mm_max_epi32(Registro1,Registro2);
-	Registro1=aux;
+	m1=_mm_extract_epi32(*Registro1,0);
+	m2=_mm_extract_epi32(*Registro1,1);
+	m3=_mm_extract_epi32(*Registro1,2);
+	m4=_mm_extract_epi32(*Registro1,3);
+	M1=_mm_extract_epi32(*Registro2,0);
+	M2=_mm_extract_epi32(*Registro2,1);
+	M3=_mm_extract_epi32(*Registro2,2);
+	M4=_mm_extract_epi32(*Registro2,3);
+	*Registro1=_mm_setr_epi32(m1,M1,m2,M2);
+	*Registro2=_mm_setr_epi32(m3,M3,m4,M4);
+	aux=_mm_min_epi32(*Registro1,*Registro2);
+	*Registro2=_mm_max_epi32(*Registro1,*Registro2);
+	*Registro1=aux;
 
 
 }
