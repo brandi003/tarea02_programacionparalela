@@ -113,6 +113,34 @@ void print_matriz(__m128i* Registros){
 	std::cout << "-----------------Termino de la matriz---------------------" << std::endl;
 }
 
+int shellSort(MatrixToMem matriz, int n)
+{
+    // Start with a big gap, then reduce the gap
+    for (int gap = n/2; gap > 0; gap /= 2)
+    {
+        // Do a gapped insertion sort for this gap size.
+        // The first gap elements a[0..gap-1] are already in gapped order
+        // keep adding one more element until the entire array is
+        // gap sorted
+        for (int i = gap; i < n; i += 1)
+        {
+            // add a[i] to the elements that have been gap sorted
+            // save a[i] in temp and make a hole at position i
+            int temp = matriz._matrixInMemory[i];
+ 
+            // shift earlier gap-sorted elements up until the correct
+            // location for a[i] is found
+            int j;           
+            for (j = i; j >= gap && matriz._matrixInMemory[j - gap] > temp; j -= gap)
+                matriz._matrixInMemory[j] = matriz._matrixInMemory[j - gap];
+             
+            //  put temp (the original a[i]) in its correct location
+            matriz._matrixInMemory[j] = temp;
+        }
+    }
+    return 0;
+}
+
 int main(int argc, char** argv)
 {
 
@@ -194,7 +222,7 @@ int main(int argc, char** argv)
 		m2._matrixInMemory[15]=_mm_extract_epi32(Registros[3],3);
 	}
 	timer3.stop();
-	std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
+	shellSort(m2._matrixInMemory, m2._nfil);
 	
 	std::cout << "Time to sort in main memory: " << timer3.elapsed() << std::endl;
 	
