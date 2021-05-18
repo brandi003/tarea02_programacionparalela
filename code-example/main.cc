@@ -229,9 +229,9 @@ int main(int argc, char** argv)
 				break;
 			}
 			for (size_t j =16 ; j < m2._nfil ; j+=16){
-				cont=cont+1
+				cont=cont+1;
 				if(m2._matrixInMemory[k]>m2._matrixInMemory[i+j]){
-					cont=0
+					cont=0;
 					uint32_t aux=m2._matrixInMemory[k];
 					m2._matrixInMemory[k]=m2._matrixInMemory[i+j];
 					m2._matrixInMemory[i+j]=aux;
