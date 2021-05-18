@@ -57,9 +57,9 @@ void traspuesta(__m128i* Registros){
 
 void bitonic_sorter(__m128i* Registro1,__m128i* Registro2){
 	*Registro2=_mm_shuffle_epi32(*Registro2, _MM_SHUFFLE(0, 1, 2, 3));
-	__m128i aux=_mm_min_epi32(*Registro1,*Registro2);
+	auto aux=_mm_min_epi32(*Registro1,*Registro2);
 	*Registro2=_mm_max_epi32(*Registro1,*Registro2);
-	*Registro1=&aux;
+	*Registro1=aux;
 
 
 	uint32_t m1=_mm_extract_epi32(*Registro1,0);
@@ -74,7 +74,7 @@ void bitonic_sorter(__m128i* Registro1,__m128i* Registro2){
 	*Registro2=_mm_setr_epi32(m3,M3,m4,M4);
 	aux=_mm_min_epi32(*Registro1,*Registro2);
 	*Registro2=_mm_max_epi32(*Registro1,*Registro2);
-	*Registro1=&aux;
+	*Registro1=aux;
 
 
 	m1=_mm_extract_epi32(*Registro1,0);
@@ -89,7 +89,7 @@ void bitonic_sorter(__m128i* Registro1,__m128i* Registro2){
 	*Registro2=_mm_setr_epi32(m3,M3,m4,M4);
 	aux=_mm_min_epi32(*Registro1,*Registro2);
 	*Registro2=_mm_max_epi32(*Registro1,*Registro2);
-	*Registro1=&aux;
+	*Registro1=aux;
 
 
 }
