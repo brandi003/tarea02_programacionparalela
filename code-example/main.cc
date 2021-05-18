@@ -176,6 +176,7 @@ int main(int argc, char** argv)
 		traspuesta(Registros);
 		print_matriz(Registros);
 		bitonic_merge_network(&Registros[0],&Registros[1],&Registros[2],&Registros[3]);
+		traspuesta(Registros);
 		print_matriz(Registros);
 		
 
