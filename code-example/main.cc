@@ -178,15 +178,24 @@ int main(int argc, char** argv)
 		bitonic_merge_network(&Registros[0],&Registros[1],&Registros[2],&Registros[3]);
 		traspuesta(Registros);
 		print_matriz(Registros);
-		
-
-
-
-
-
-
-		break;
+		m2._matrixInMemory[0]=_mm_extract_epi32(Registro[0],0);
+		m2._matrixInMemory[1]=_mm_extract_epi32(Registro[0],1);
+		m2._matrixInMemory[2]=_mm_extract_epi32(Registro[0],2);
+		m2._matrixInMemory[3]=_mm_extract_epi32(Registro[0],3);
+		m2._matrixInMemory[4]=_mm_extract_epi32(Registro[1],0);
+		m2._matrixInMemory[5]=_mm_extract_epi32(Registro[1],1);
+		m2._matrixInMemory[6]=_mm_extract_epi32(Registro[1],2);
+		m2._matrixInMemory[7]=_mm_extract_epi32(Registro[1],3);
+		m2._matrixInMemory[8]=_mm_extract_epi32(Registro[2],0);
+		m2._matrixInMemory[9]=_mm_extract_epi32(Registro[2],1);
+		m2._matrixInMemory[10]=_mm_extract_epi32(Registro[2],2);
+		m2._matrixInMemory[11]=_mm_extract_epi32(Registro[2],3);
+		m2._matrixInMemory[12]=_mm_extract_epi32(Registro[3],0);
+		m2._matrixInMemory[13]=_mm_extract_epi32(Registro[3],1);
+		m2._matrixInMemory[14]=_mm_extract_epi32(Registro[3],2);
+		m2._matrixInMemory[15]=_mm_extract_epi32(Registro[3],3);
 	}
+	std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
 	timer3.stop();
 	
 	std::cout << "Time to sort in main memory: " << timer3.elapsed() << std::endl;
@@ -194,7 +203,7 @@ int main(int argc, char** argv)
 	////////////////////////////////////////////////////////////////
 	// Mostrar los 5 primeros elementos de la matriz ordenada.
 	for(size_t i=0; i< 5; i++){		
-		std::cout <<  m1._matrixInMemory[i] << std::endl;
+		std::cout <<  m2._matrixInMemory[i] << std::endl;
 	}
 	std::cout << "-------------------------------"<< std::endl;
 	return(EXIT_SUCCESS);
