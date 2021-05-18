@@ -165,7 +165,11 @@ int main(int argc, char** argv)
 		sorting_network(Registros);
 		traspuesta(Registros);
 		print_matriz(Registros);
-		bitonic_sorter(&Registros[0],&Registros[1]);
+		__m128i prueba=Registros[0];
+		__m128i prueba2=Registros[1];
+		bitonic_sorter(prueba,prueba2);
+		Registros[0]=prueba;
+		Registros[1]=prueba2;
 		print_matriz(Registros);
 		
 
