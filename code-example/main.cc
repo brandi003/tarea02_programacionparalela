@@ -239,10 +239,10 @@ int main(int argc, char** argv)
 
 
 
-	std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
+	//std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
 
 
-	/*shell sort
+	
 	for (uint32_t gap = m2._nfil/2; gap > 0; gap /= 2)
     {
         // Do a gapped insertion sort for this gap size.
@@ -264,7 +264,7 @@ int main(int argc, char** argv)
             //  put temp (the original a[i]) in its correct location
             m2._matrixInMemory[j] = temp;
         }
-    }*/
+    }
 	timer3.stop();
 	
 	std::cout << "Time to sort in main memory: " << timer3.elapsed() << std::endl;
