@@ -228,11 +228,11 @@ int main(int argc, char** argv)
 	for (size_t k = 0;k < m2._nfil;k++){
 		int cont=0;
 		int val=m2._nfil/16;
-		for (size_t i=0; i<16 ; i++){
+		for (size_t i=k; i<16-k ; i++){
 			if(cont==val*2){
 				break;
 			}
-			for (size_t j =16 ; j < m2._nfil ; j+=16){
+			for (size_t j =0 ; j < m2._nfil ; j+=16){
 				cont=cont+1;
 				if(m2._matrixInMemory[k]>m2._matrixInMemory[i+j]){
 					cont=0;
