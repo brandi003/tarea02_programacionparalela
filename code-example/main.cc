@@ -113,7 +113,7 @@ void print_matriz(__m128i* Registros){
 	std::cout << "-----------------Termino de la matriz---------------------" << std::endl;
 }
 
-int shellSort(uint32_t* matriz, int n)
+int shellSort(MatrixToMem matriz, int n)
 {
     // Start with a big gap, then reduce the gap
     for (uint32_t gap = n/2; gap > 0; gap /= 2)
@@ -222,7 +222,7 @@ int main(int argc, char** argv)
 		m2._matrixInMemory[15]=_mm_extract_epi32(Registros[3],3);
 	}
 	timer3.stop();
-	shellSort(m2._matrixInMemory, m2._nfil);
+	shellSort(m2, m2._nfil);
 	
 	std::cout << "Time to sort in main memory: " << timer3.elapsed() << std::endl;
 	
