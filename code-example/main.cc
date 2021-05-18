@@ -193,8 +193,8 @@ int main(int argc, char** argv)
 		m2._matrixInMemory[14]=_mm_extract_epi32(Registros[3],2);
 		m2._matrixInMemory[15]=_mm_extract_epi32(Registros[3],3);
 	}
-	std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
 	timer3.stop();
+	std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
 	
 	std::cout << "Time to sort in main memory: " << timer3.elapsed() << std::endl;
 	
