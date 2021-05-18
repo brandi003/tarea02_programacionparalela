@@ -224,7 +224,7 @@ int main(int argc, char** argv)
 	for (size_t k = 0;k < m2._nfil;k++){
 		int cont=0;
 		int val=m2._nfil/16;
-		for (size_t i=0; i<16 ; i++){
+		for (size_t i=k; i<16 ; i++){
 			if(cont==val){
 				break;
 			}
