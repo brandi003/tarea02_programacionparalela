@@ -237,27 +237,9 @@ int main(int argc, char** argv)
 		m2._matrixInMemory[i+15]=_mm_extract_epi32(Registros[3],3);
 	}
 
-	for (size_t i=0;i<m2._nfil;i++){
-		for (size_t j=0;j<16;j++){
-			int div=i/16;
-			for (size_t k=(div*16)+16;k<m2._nfil-16;k+=16){
-				if(k+j==999){
-					std::cout << "999" << std::endl;
-				}
-				/*
-				if (m2._matrixInMemory[i]>m2._matrixInMemory[k+j]){
-					auto aux= m2._matrixInMemory[i];
-					m2._matrixInMemory[i]=m2._matrixInMemory[j+k];
-					m2._matrixInMemory[i]=aux;
-				}*/
-			}
-		}
-		break;
-	}
 
 
-
-	//std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
+	std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
 
 
 	/*shell sort
