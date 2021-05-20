@@ -238,8 +238,8 @@ int main(int argc, char** argv)
 	}
 
 
-
-	std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
+	std::stable_sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
+	//std::sort(m2._matrixInMemory, m2._matrixInMemory + m2._nfil);
 
 
 	/*shell sort
