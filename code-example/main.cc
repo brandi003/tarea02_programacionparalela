@@ -210,6 +210,9 @@ int main(int argc, char** argv)
 		timer2.start();
 		__m128i Registros[4];
 		for (size_t i=0;i<m2._nfil;i+=16){
+			if(m2._nfil==1000 && i==992){
+				continue;
+			}
 			Registros[0]=_mm_setr_epi32(m2._matrixInMemory[i],m2._matrixInMemory[i+1],m2._matrixInMemory[i+2],m2._matrixInMemory[i+3]);
 			Registros[1]=_mm_setr_epi32(m2._matrixInMemory[i+4],m2._matrixInMemory[i+5],m2._matrixInMemory[i+6],m2._matrixInMemory[i+7]);
 			Registros[2]=_mm_setr_epi32(m2._matrixInMemory[i+8],m2._matrixInMemory[i+9],m2._matrixInMemory[i+10],m2._matrixInMemory[i+11]);
