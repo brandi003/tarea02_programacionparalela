@@ -7,7 +7,6 @@
 #include <immintrin.h>
 #include <emmintrin.h>
 #include <iostream>
-#include <ofstream>
 #include <ifstream>
 
 /////////////////////////////////////////////////////////////////////////////////
