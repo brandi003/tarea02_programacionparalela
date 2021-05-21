@@ -206,6 +206,7 @@ int main(int argc, char** argv)
 /******************************************************************************************************************************************************/
 /******************************************************************************************************************************************************/
 		MatrixToMem m2(fileName);
+		auto m3=m2;
 		//std::cout << "Time to transfer to main memory: " << timer2.elapsed() << std::endl;
 		timer2.start();
 		__m128i Registros[4];
@@ -218,7 +219,6 @@ int main(int argc, char** argv)
 			Registros[2]=_mm_setr_epi32(m2._matrixInMemory[i+8],m2._matrixInMemory[i+9],m2._matrixInMemory[i+10],m2._matrixInMemory[i+11]);
 			Registros[3]=_mm_setr_epi32(m2._matrixInMemory[i+12],m2._matrixInMemory[i+13],m2._matrixInMemory[i+14],m2._matrixInMemory[i+15]);
 			std::cout << i << std::endl;
-			print_m2(Registros);
 			sorting_network(Registros);
 			traspuesta(Registros);
 			bitonic_merge_network(&Registros[0],&Registros[1],&Registros[2],&Registros[3]);
@@ -250,29 +250,36 @@ int main(int argc, char** argv)
 /******************************************************************************************************************************************************/
 /******************************************************************************************************************************************************/
 /******************************************************************************************************************************************************/
-		/*shell sort
-		for (uint32_t gap = m2._nfil/2; gap > 0; gap /= 2)
+
+
+
+
+/******************************************************************************************************************************************************/
+/******************************************************************************************************************************************************/
+/******************************************************************************************************************************************************/
+		shell sort
+		for (uint32_t gap = m3._nfil/2; gap > 0; gap /= 2)
 	    {
 	        // Do a gapped insertion sort for this gap size.
 	        // The first gap elements a[0..gap-1] sare already in gapped order
 	        // keep adding one more element until the entire array is
 	        // gap sorted
-	        for (uint32_t i = gap; i < m2._nfil; i += 1)
+	        for (uint32_t i = gap; i < m3._nfil; i += 1)
 	        {
 	            // add a[i] to the elements that have been gap sorted
 	            // save a[i] in temp and make a hole at position i
-	            uint32_t temp = m2._matrixInMemory[i];
+	            uint32_t temp = m3._matrixInMemory[i];
 	 
 	            // shift earlier gap-sorted elements up until the correct
 	            // location for a[i] is found
 	            uint32_t j;           
-	            for (j = i; j >= gap && m2._matrixInMemory[j - gap] > temp; j -= gap)
-	                m2._matrixInMemory[j] = m2._matrixInMemory[j - gap];
+	            for (j = i; j >= gap && m3._matrixInMemory[j - gap] > temp; j -= gap)
+	                m3._matrixInMemory[j] = m3._matrixInMemory[j - gap];
 	             
 	            //  put temp (the original a[i]) in its correct location
-	            m2._matrixInMemory[j] = temp;
+	            m3._matrixInMemory[j] = temp;
 	        }
-	    }*/
+	    }
 
 
 		/*
