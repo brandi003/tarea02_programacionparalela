@@ -7,8 +7,8 @@
 #include <immintrin.h>
 #include <emmintrin.h>
 #include <iostream>
-#include <iostream>
 #include <ofstream>
+#include <ifstream>
 
 /////////////////////////////////////////////////////////////////////////////////
 //   Usage:
