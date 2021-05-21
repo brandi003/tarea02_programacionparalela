@@ -159,7 +159,7 @@ int shellSort(MatrixToMem m2, int n)
 int main(int argc, char** argv)
 {
 	ofstream file;
-	file.open("arrayData-10000000");
+	file.open("arrayData-10000000.txt");
 	file << "10000000\n";
 	for (size_t i=0; i<9999999; i++){
   		file << rand() << "\n";
