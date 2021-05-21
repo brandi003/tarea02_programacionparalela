@@ -161,7 +161,7 @@ int main(int argc, char** argv)
 	//timers y contadores
 	double cont0=0, cont1=0, cont2=0, cont3=0, cont4=0;
 	Timing timer0, timer1, timer2, timer3, timer4; 
-	int repeticiones=100;
+	int repeticiones=1;
 	for (size_t m=0;m<repeticiones;m++){
 		std::cout << m << std::endl;
 /******************************************************************************************************************************************************/
@@ -211,9 +211,6 @@ int main(int argc, char** argv)
 		timer2.start();
 		__m128i Registros[4];
 		for (size_t i=0;i<m2._nfil;i+=16){
-			if(m2._nfil==1000 && i==992){
-				break;
-			}
 			Registros[0]=_mm_setr_epi32(m2._matrixInMemory[i],m2._matrixInMemory[i+1],m2._matrixInMemory[i+2],m2._matrixInMemory[i+3]);
 			Registros[1]=_mm_setr_epi32(m2._matrixInMemory[i+4],m2._matrixInMemory[i+5],m2._matrixInMemory[i+6],m2._matrixInMemory[i+7]);
 			Registros[2]=_mm_setr_epi32(m2._matrixInMemory[i+8],m2._matrixInMemory[i+9],m2._matrixInMemory[i+10],m2._matrixInMemory[i+11]);
@@ -222,6 +219,7 @@ int main(int argc, char** argv)
 			traspuesta(Registros);
 			bitonic_merge_network(&Registros[0],&Registros[1],&Registros[2],&Registros[3]);
 			traspuesta(Registros);
+			print_m2(Registros);
 			m2._matrixInMemory[i]=_mm_extract_epi32(Registros[0],0);
 			m2._matrixInMemory[i+1]=_mm_extract_epi32(Registros[0],1);
 			m2._matrixInMemory[i+2]=_mm_extract_epi32(Registros[0],2);
@@ -238,6 +236,7 @@ int main(int argc, char** argv)
 			m2._matrixInMemory[i+13]=_mm_extract_epi32(Registros[3],1);
 			m2._matrixInMemory[i+14]=_mm_extract_epi32(Registros[3],2);
 			m2._matrixInMemory[i+15]=_mm_extract_epi32(Registros[3],3);
+			break;
 		}
 		timer2.stop();
 		cont2=cont2+timer2.elapsed();
