@@ -279,11 +279,11 @@ int main(int argc, char** argv)
 		}
 		std::cout << "-------------------------------"<< std::endl;*/
 	}
-	std::cout << "tiempo de carga de la matriz a memoria " << (timer0/repeticiones) << std::endl;
-	std::cout << "tiempo de ordenamiento con std::sort " << (timer1/repeticiones) << std::endl;
-	std::cout << "tiempo de preordenamiento con procesamiento vectorial " << (timer2/repeticiones) << std::endl;
-	std::cout << "tiempo de ordenamiento con std::sort de la matriz preordenada " << (timer3/repeticiones) << std::endl;
-	std::cout << "tiempo de ordenamiento con procesamiento vectorial" << (timer2+timer3)/(repeticiones*2);
+	std::cout << "tiempo de carga de la matriz a memoria " << (cont0/repeticiones) << std::endl;
+	std::cout << "tiempo de ordenamiento con std::sort " << (cont1/repeticiones) << std::endl;
+	std::cout << "tiempo de preordenamiento con procesamiento vectorial " << (con2/repeticiones) << std::endl;
+	std::cout << "tiempo de ordenamiento con std::sort de la matriz preordenada " << (cont3/repeticiones) << std::endl;
+	std::cout << "tiempo de ordenamiento con procesamiento vectorial" << (cont2+cont3)/(repeticiones*2);
 	return(EXIT_SUCCESS);
 }
 
