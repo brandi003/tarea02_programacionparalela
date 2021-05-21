@@ -315,7 +315,7 @@ int main(int argc, char** argv)
 	std::cout << "tiempo de preordenamiento con procesamiento vectorial " << (cont2/repeticiones) << std::endl;
 	std::cout << "tiempo de ordenamiento con std::sort de la matriz preordenada " << (cont3/repeticiones) << std::endl;
 	std::cout << "tiempo de ordenamiento con procesamiento vectorial " << (cont2+cont3)/(repeticiones) << std::endl;
-	std::cout << "tiempo de ordenamiento con shellSort de la matriz preordenada " << (cont4/repeticiones) << std::endl;
+	std::cout << "tiempo de ordenamiento con shellSort de la matriz preordenada " << (cont4+cont3/repeticiones) << std::endl;
 	std::cout << "------------------------------------------------------------"<< std::endl;
 	return(EXIT_SUCCESS);
 }
