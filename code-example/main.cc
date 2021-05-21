@@ -159,8 +159,8 @@ int shellSort(MatrixToMem m2, int n)
 int main(int argc, char** argv)
 {
 	//timers y contadores
-	double cont0=0, cont1=0, cont2=0, cont3=0, contr4=0, cont5=0;
-	Timing timer0, timer1, timer2, timer3, timer4, timer5;
+	double cont0=0, cont1=0, cont2=0, cont3=0;
+	Timing timer0, timer1, timer2, timer3; 
 	int repeticiones=100;
 	for (size_t m=0;m<repeticiones;m++){
 /******************************************************************************************************************************************************/
@@ -210,7 +210,6 @@ int main(int argc, char** argv)
 		timer2.start();
 		__m128i Registros[4];
 		for (size_t i=0;i<m2._nfil;i+=16){
-			timer4.start();
 			Registros[0]=_mm_setr_epi32(m2._matrixInMemory[i],m2._matrixInMemory[i+1],m2._matrixInMemory[i+2],m2._matrixInMemory[i+3]);
 			Registros[1]=_mm_setr_epi32(m2._matrixInMemory[i+4],m2._matrixInMemory[i+5],m2._matrixInMemory[i+6],m2._matrixInMemory[i+7]);
 			Registros[2]=_mm_setr_epi32(m2._matrixInMemory[i+8],m2._matrixInMemory[i+9],m2._matrixInMemory[i+10],m2._matrixInMemory[i+11]);
@@ -235,8 +234,6 @@ int main(int argc, char** argv)
 			m2._matrixInMemory[i+13]=_mm_extract_epi32(Registros[3],1);
 			m2._matrixInMemory[i+14]=_mm_extract_epi32(Registros[3],2);
 			m2._matrixInMemory[i+15]=_mm_extract_epi32(Registros[3],3);
-			timer4.stop();
-			cont4=cont4+timer4.elapsed();
 		}
 		timer2.stop();
 		cont2=cont2+timer2.elapsed();
@@ -281,8 +278,13 @@ int main(int argc, char** argv)
 			std::cout <<  m2._matrixInMemory[i] << std::endl;
 		}
 		std::cout << "-------------------------------"<< std::endl;*/
-		return(EXIT_SUCCESS);
 	}
+	std::cout << "tiempo de carga de la matriz a memoria " << (timer0/repeticiones) << std::endl;
+	std::cout << "tiempo de ordenamiento con std::sort " << (timer1/repeticiones) << std::endl;
+	std::cout << "tiempo de preordenamiento con procesamiento vectorial " << (timer2/repeticiones) << std::endl;
+	std::cout << "tiempo de ordenamiento con std::sort de la matriz preordenada " << (timer3/repeticiones) << std::endl;
+	std::cout << "tiempo de ordenamiento con procesamiento vectorial" << (timer2+timer3)/(repeticiones*2);
+	return(EXIT_SUCCESS);
 }
 
 
