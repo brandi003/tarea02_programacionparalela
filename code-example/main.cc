@@ -159,9 +159,9 @@ int shellSort(MatrixToMem m2, int n)
 int main(int argc, char** argv)
 {
 	//timers y contadores
-	double cont0=0, cont1=0, cont2=0, cont3=0;
-	Timing timer0, timer1, timer2, timer3; 
-	int repeticiones=1;
+	double cont0=0, cont1=0, cont2=0, cont3=0, cont4=0;
+	Timing timer0, timer1, timer2, timer3, timer4; 
+	int repeticiones=100;
 	for (size_t m=0;m<repeticiones;m++){
 /******************************************************************************************************************************************************/
 /******************************************************************************************************************************************************/
@@ -256,30 +256,51 @@ int main(int argc, char** argv)
 /******************************************************************************************************************************************************/
 /******************************************************************************************************************************************************/
 /******************************************************************************************************************************************************/
+		for (size_t i=0;i<m3._nfil;i+=16){
+			if(m3._nfil==1000 && i==992){
+				break;
+			}
+			Registros[0]=_mm_setr_epi32(m3._matrixInMemory[i],m3._matrixInMemory[i+1],m3._matrixInMemory[i+2],m3._matrixInMemory[i+3]);
+			Registros[1]=_mm_setr_epi32(m3._matrixInMemory[i+4],m3._matrixInMemory[i+5],m3._matrixInMemory[i+6],m3._matrixInMemory[i+7]);
+			Registros[2]=_mm_setr_epi32(m3._matrixInMemory[i+8],m3._matrixInMemory[i+9],m3._matrixInMemory[i+10],m3._matrixInMemory[i+11]);
+			Registros[3]=_mm_setr_epi32(m3._matrixInMemory[i+12],m3._matrixInMemory[i+13],m3._matrixInMemory[i+14],m3._matrixInMemory[i+15]);
+			std::cout << i << std::endl;
+			sorting_network(Registros);
+			traspuesta(Registros);
+			bitonic_merge_network(&Registros[0],&Registros[1],&Registros[2],&Registros[3]);
+			traspuesta(Registros);
+			m3._matrixInMemory[i]=_mm_extract_epi32(Registros[0],0);
+			m3._matrixInMemory[i+1]=_mm_extract_epi32(Registros[0],1);
+			m3._matrixInMemory[i+2]=_mm_extract_epi32(Registros[0],2);
+			m3._matrixInMemory[i+3]=_mm_extract_epi32(Registros[0],3);
+			m3._matrixInMemory[i+4]=_mm_extract_epi32(Registros[1],0);
+			m3._matrixInMemory[i+5]=_mm_extract_epi32(Registros[1],1);
+			m3._matrixInMemory[i+6]=_mm_extract_epi32(Registros[1],2);
+			m3._matrixInMemory[i+7]=_mm_extract_epi32(Registros[1],3);
+			m3._matrixInMemory[i+8]=_mm_extract_epi32(Registros[2],0);
+			m3._matrixInMemory[i+9]=_mm_extract_epi32(Registros[2],1);
+			m3._matrixInMemory[i+10]=_mm_extract_epi32(Registros[2],2);
+			m3._matrixInMemory[i+11]=_mm_extract_epi32(Registros[2],3);
+			m3._matrixInMemory[i+12]=_mm_extract_epi32(Registros[3],0);
+			m3._matrixInMemory[i+13]=_mm_extract_epi32(Registros[3],1);
+			m3._matrixInMemory[i+14]=_mm_extract_epi32(Registros[3],2);
+			m3._matrixInMemory[i+15]=_mm_extract_epi32(Registros[3],3);
+		}
 		MatrixToMem m3(fileName);
+		timer4.start();
 		for (uint32_t gap = m3._nfil/2; gap > 0; gap /= 2)
 	    {
-	        // Do a gapped insertion sort for this gap size.
-	        // The first gap elements a[0..gap-1] sare already in gapped order
-	        // keep adding one more element until the entire array is
-	        // gap sorted
 	        for (uint32_t i = gap; i < m3._nfil; i += 1)
 	        {
-	            // add a[i] to the elements that have been gap sorted
-	            // save a[i] in temp and make a hole at position i
 	            uint32_t temp = m3._matrixInMemory[i];
-	 
-	            // shift earlier gap-sorted elements up until the correct
-	            // location for a[i] is found
 	            uint32_t j;           
 	            for (j = i; j >= gap && m3._matrixInMemory[j - gap] > temp; j -= gap)
 	                m3._matrixInMemory[j] = m3._matrixInMemory[j - gap];
-	             
-	            //  put temp (the original a[i]) in its correct location
 	            m3._matrixInMemory[j] = temp;
 	        }
 	    }
-
+	    timer4.stop();
+	    cont4=cont4+timer4.elapsed();
 
 		/*
 		std::cout << "Time to sort in main memory: " << timer3.elapsed() << std::endl;
@@ -296,6 +317,7 @@ int main(int argc, char** argv)
 	std::cout << "tiempo de preordenamiento con procesamiento vectorial " << (cont2/repeticiones) << std::endl;
 	std::cout << "tiempo de ordenamiento con std::sort de la matriz preordenada " << (cont3/repeticiones) << std::endl;
 	std::cout << "tiempo de ordenamiento con procesamiento vectorial " << (cont2+cont3)/(repeticiones) << std::endl;
+	std::cout << "tiempo de ordenamiento con shellSort de la matriz preordenada " << (cont4/repeticiones) << std::endl;
 	std::cout << "------------------------------------------------------------"<< std::endl;
 	return(EXIT_SUCCESS);
 }
