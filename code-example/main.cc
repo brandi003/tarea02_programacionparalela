@@ -157,7 +157,7 @@ int main(int argc, char** argv)
 		auto sub2 = _mm_unpacklo_epi32(Registros[0],Registros[1]);
 		Registros[0]=_mm_min_epi32(sub1,sub2);
 		Registros[1]=_mm_max_epi32(sub1,sub2);
-		print_m2(Registros)
+		print_m2(Registros);
 		for (size_t i=0;i<m2._nfil;i+=16){
 			if(m2._nfil==1000 && i==992){
 				break;
