@@ -74,39 +74,6 @@ void bitonic_sorter(__m128i* Registro1,__m128i* Registro2){
 	sub2 = _mm_unpacklo_epi32(*Registro1,*Registro2);
 	*Registro1=_mm_min_epi32(sub1,sub2);
 	*Registro2=_mm_max_epi32(sub1,sub2);
-
-
-	/*
-	uint32_t m1=_mm_extract_epi32(*Registro1,0);
-	uint32_t m2=_mm_extract_epi32(*Registro1,1);
-	uint32_t m3=_mm_extract_epi32(*Registro1,2);
-	uint32_t m4=_mm_extract_epi32(*Registro1,3);
-	uint32_t M1=_mm_extract_epi32(*Registro2,0);
-	uint32_t M2=_mm_extract_epi32(*Registro2,1);
-	uint32_t M3=_mm_extract_epi32(*Registro2,2);
-	uint32_t M4=_mm_extract_epi32(*Registro2,3);
-	*Registro1=_mm_setr_epi32(m1,M1,m2,M2);
-	*Registro2=_mm_setr_epi32(m3,M3,m4,M4);
-	aux=_mm_min_epi32(*Registro1,*Registro2);
-	*Registro2=_mm_max_epi32(*Registro1,*Registro2);
-	*Registro1=aux;
-
-
-	m1=_mm_extract_epi32(*Registro1,0);
-	m2=_mm_extract_epi32(*Registro1,1);
-	m3=_mm_extract_epi32(*Registro1,2);
-	m4=_mm_extract_epi32(*Registro1,3);
-	M1=_mm_extract_epi32(*Registro2,0);
-	M2=_mm_extract_epi32(*Registro2,1);
-	M3=_mm_extract_epi32(*Registro2,2);
-	M4=_mm_extract_epi32(*Registro2,3);
-	*Registro1=_mm_setr_epi32(m1,M1,m2,M2);
-	*Registro2=_mm_setr_epi32(m3,M3,m4,M4);
-	aux=_mm_min_epi32(*Registro1,*Registro2);
-	*Registro2=_mm_max_epi32(*Registro1,*Registro2);
-	*Registro1=aux;*/
-
-
 }
 
 void bitonic_merge_network(__m128i* Registro1,__m128i* Registro2,__m128i* Registro3,__m128i* Registro4){
@@ -126,34 +93,6 @@ void print_m2(__m128i* Registros){
 	std::cout << "[" << _mm_extract_epi32(Registros[2],0) << "," << _mm_extract_epi32(Registros[2],1) << "," << _mm_extract_epi32(Registros[2],2) << "," << _mm_extract_epi32(Registros[2],3) << "]" << std::endl;
 	std::cout << "[" << _mm_extract_epi32(Registros[3],0) << "," << _mm_extract_epi32(Registros[3],1) << "," << _mm_extract_epi32(Registros[3],2) << "," << _mm_extract_epi32(Registros[3],3) << "]" << std::endl;
 	std::cout << "-----------------Termino de la m2---------------------" << std::endl;
-}
-
-int shellSort(MatrixToMem m2, int n)
-{
-    // Start with a big gap, then reduce the gap
-    for (uint32_t gap = n/2; gap > 0; gap /= 2)
-    {
-        // Do a gapped insertion sort for this gap size.
-        // The first gap elements a[0..gap-1] are already in gapped order
-        // keep adding one more element until the entire array is
-        // gap sorted
-        for (uint32_t i = gap; i < n; i += 1)
-        {
-            // add a[i] to the elements that have been gap sorted
-            // save a[i] in temp and make a hole at position i
-            uint32_t temp = m2._matrixInMemory[i];
- 
-            // shift earlier gap-sorted elements up until the correct
-            // location for a[i] is found
-            uint32_t j;           
-            for (j = i; j >= gap && m2._matrixInMemory[j - gap] > temp; j -= gap)
-                m2._matrixInMemory[j] = m2._matrixInMemory[j - gap];
-             
-            //  put temp (the original a[i]) in its correct location
-            m2._matrixInMemory[j] = temp;
-        }
-    }
-    return 0;
 }
 
 int main(int argc, char** argv)
@@ -210,6 +149,15 @@ int main(int argc, char** argv)
 		//std::cout << "Time to transfer to main memory: " << timer2.elapsed() << std::endl;
 		timer2.start();
 		__m128i Registros[4];
+		Registros[0]=_mm_setr_epi32(0,1,2,3);
+		Registros[1]=_mm_setr_epi32(4,5,6,7);
+		Registros[2]=_mm_setr_epi32(8,9,10,11);
+		Registros[3]=_mm_setr_epi32(12,13,14,15);
+		auto sub1 = _mm_unpackhi_epi32(Registros[0],Registros[1]);
+		auto sub2 = _mm_unpacklo_epi32(Registros[0],Registros[1]);
+		Registros[0]=_mm_min_epi32(sub1,sub2);
+		Registros[1]=_mm_max_epi32(sub1,sub2);
+		print_m2(Registros)
 		for (size_t i=0;i<m2._nfil;i+=16){
 			if(m2._nfil==1000 && i==992){
 				break;
