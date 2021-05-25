@@ -236,7 +236,6 @@ int main(int argc, char** argv)
 			m2._matrixInMemory[i+13]=_mm_extract_epi32(Registros[3],1);
 			m2._matrixInMemory[i+14]=_mm_extract_epi32(Registros[3],2);
 			m2._matrixInMemory[i+15]=_mm_extract_epi32(Registros[3],3);
-			break;
 		}
 		timer2.stop();
 		cont2=cont2+timer2.elapsed();
