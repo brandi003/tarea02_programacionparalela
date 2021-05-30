@@ -1,4 +1,4 @@
-TARGET=./tarea02
+TARGET=./src/tarea02
 
 DEBUG=-DDEBUG
 DEBUG=
@@ -7,7 +7,7 @@ CXX = g++
 
 #
 DIR_OBJ=objs
-SOURCES=src/$(wildcard *.cc)
+SOURCES=$(wildcard *.cc)
 OBJECTS=$(patsubst %.cc,$(DIR_OBJ)/%.o,$(SOURCES))
 
 INTRINSICS=-msse2 -mavx -msse
