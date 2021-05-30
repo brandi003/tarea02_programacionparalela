@@ -145,18 +145,6 @@ int main(int argc, char** argv)
 		//std::cout << "Time to transfer to main memory: " << timer2.elapsed() << std::endl;
 		timer2.start();
 		__m128i Registros[4];
-		Registros[0]=_mm_setr_epi32(0,1,2,3);
-		Registros[1]=_mm_setr_epi32(4,5,6,7);
-		Registros[2]=_mm_setr_epi32(8,9,10,11);
-		Registros[3]=_mm_setr_epi32(12,13,14,15);
-		auto sub1 = _mm_unpackhi_epi32(Registros[0],Registros[1]);
-		auto sub2 = _mm_unpacklo_epi32(Registros[0],Registros[1]);
-		Registros[0]=_mm_min_epi32(sub1,sub2);
-		Registros[1]=_mm_max_epi32(sub1,sub2);
-		sorting_network(Registros);
-		traspuesta(Registros);
-		bitonic_merge_network(&Registros[0],&Registros[1],&Registros[2],&Registros[3]);
-		print_m2(Registros);
 		for (size_t i=0;i<m2._nfil;i+=16){
 			if(m2._nfil==1000 && i==992){
 				break;
