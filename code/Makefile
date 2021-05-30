@@ -6,7 +6,7 @@ DEBUG=
 CXX = g++
 
 #
-DIR_OBJ=src
+DIR_OBJ=objs
 SOURCES=$(wildcard src/*.cc)
 OBJECTS=$(patsubst %.cc,$(DIR_OBJ)/%.o,$(SOURCES))
 
