@@ -23,7 +23,6 @@ all: $(TARGET)
 	@echo Made [ $? ] OK :\)
 	
 $(TARGET): $(OBJECTS) 
-	@echo "aaaaaaaaaaaaaaaaaaaaaaaa"
 	@echo Linking [$@]
 	@eval $(CXX) $(LDFLAGS) $^ $(LDLIBS)  -o $@ 
 	
