@@ -8,11 +8,11 @@ CXX = g++
 #
 DIR_OBJ=objs
 SOURCES=$(wildcard src/*.cc)
-OBJECTS=$(patsubst %.cc,$(DIR_OBJ)/%.o,$(SOURCES))
+OBJECTS=$(patsubst src/%.cc,src/$(DIR_OBJ)/%.o,$(SOURCES))
 
 INTRINSICS=-msse2 -mavx -msse
 
-INCLUDES =-I. -I./src/include
+INCLUDES =-I. -I./include
 CPPFLAGS =-std=c++17  -Wno-deprecated $(INTRINSICS) 
 LDFLAGS =-L/usr/local/lib 
 LDLIBS = -lm -lpthread 
