@@ -19,23 +19,27 @@ LDLIBS = -lm -lpthread
 
 
 all: $(TARGET)
-	echo "aaaaaaaaaaaaaaaaaaaaaaaa"
+	@echo "aaaaaaaaaaaaaaaaaaaaaaaa"
 	@echo Made [ $? ] OK :\)
 	
 $(TARGET): $(OBJECTS) 
+	@echo "aaaaaaaaaaaaaaaaaaaaaaaa"
 	@echo Linking [$@]
 	@eval $(CXX) $(LDFLAGS) $^ $(LDLIBS)  -o $@ 
 	
 $(DIR_OBJ)/%.o: %.cc
+	@echo "aaaaaaaaaaaaaaaaaaaaaaaa"
 	@echo Compiling [$@]
 	@mkdir -p $(DIR_OBJ)
 	@eval $(CXX) -c $(INCLUDES) $(CPPFLAGS)  $< -o $@
 	
 clean:
+	@echo "aaaaaaaaaaaaaaaaaaaaaaaa"
 	@$(RM) core *~ \#*\# *.bak *.BAK *\%
 	@$(RM) -f .dummy $(OBJECTS)
 
 distclean:
+	@echo "aaaaaaaaaaaaaaaaaaaaaaaa"
 	@$(RM) $(TARGET)
 	@$(RM) -rf $(DIR_OBJ)
 
