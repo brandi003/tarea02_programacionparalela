@@ -12,7 +12,7 @@ OBJECTS=$(patsubst %.cc,$(DIR_OBJ)/%.o,$(SOURCES))
 
 INTRINSICS=-msse2 -mavx -msse
 
-INCLUDES =-I. -I./include
+INCLUDES =-I. -I./src/include
 CPPFLAGS =-std=c++17  -Wno-deprecated $(INTRINSICS) 
 LDFLAGS =-L/usr/local/lib 
 LDLIBS = -lm -lpthread 
