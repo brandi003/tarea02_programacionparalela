@@ -7,8 +7,8 @@ CXX = g++
 
 #
 DIR_OBJ=objs
-SOURCES=$(wildcard src/*.cc)
-OBJECTS=$(DIR_OBJ)/%.o,$(SOURCES))
+SOURCES=$(wildcard *.cc)
+OBJECTS=$(patsubst %.cc,$(DIR_OBJ)/%.o,$(SOURCES))
 
 INTRINSICS=-msse2 -mavx -msse
 
@@ -17,17 +17,14 @@ CPPFLAGS =-std=c++17  -Wno-deprecated $(INTRINSICS)
 LDFLAGS =-L/usr/local/lib 
 LDLIBS = -lm -lpthread 
 
-
 all: $(TARGET)
 	@echo Made [ $? ] OK :\)
 	
-$(TARGET): $(OBJECTS)
+$(TARGET): $(OBJECTS) 
 	@echo Linking [$@]
 	@eval $(CXX) $(LDFLAGS) $^ $(LDLIBS)  -o $@ 
 	
-$(DIR_OBJ)/%.o: %.cc 
-	@echo "aaaaaaaaaaaaaaaaaaaaaaaa"
-	@echo $(OBJECTS)
+$(DIR_OBJ)/%.o: %.cc
 	@echo Compiling [$@]
 	@mkdir -p $(DIR_OBJ)
 	@eval $(CXX) -c $(INCLUDES) $(CPPFLAGS)  $< -o $@
