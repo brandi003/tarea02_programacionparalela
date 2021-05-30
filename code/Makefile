@@ -6,9 +6,9 @@ DEBUG=
 CXX = g++
 
 #
-DIR_OBJ=objs
+DIR_OBJ=src
 SOURCES=$(wildcard src/*.cc)
-OBJECTS=$(patsubst %.cc,$(DIR_OBJ)/src/%.o,$(SOURCES))
+OBJECTS=$(patsubst %.cc,$(DIR_OBJ)/%.o,$(SOURCES))
 
 INTRINSICS=-msse2 -mavx -msse
 
