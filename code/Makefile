@@ -34,7 +34,6 @@ $(DIR_OBJ)/%.o: %.cc
 	@eval $(CXX) -c $(INCLUDES) $(CPPFLAGS)  $< -o $@
 	
 clean:
-	@echo "aaaaaaaaaaaaaaaaaaaaaaaa"
 	@$(RM) core *~ \#*\# *.bak *.BAK *\%
 	@$(RM) -f .dummy $(OBJECTS)
 
