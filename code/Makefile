@@ -19,7 +19,7 @@ LDLIBS = -lm -lpthread
 
 
 all: $(TARGET)
-	echo $(TARGET)
+	echo "aaaaaaaaaaaaaaaaaaaaaaaa"
 	@echo Made [ $? ] OK :\)
 	
 $(TARGET): $(OBJECTS) 
