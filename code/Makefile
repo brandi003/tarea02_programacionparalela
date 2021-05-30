@@ -21,13 +21,13 @@ LDLIBS = -lm -lpthread
 all: $(TARGET)
 	@echo Made [ $? ] OK :\)
 	
-$(TARGET): $(OBJECTS) 
-	@echo "aaaaaaaaaaaaaaaaaaaaaaaa"
-	@echo $(OBJECTS)
+$(TARGET): $(OBJECTS)
 	@echo Linking [$@]
 	@eval $(CXX) $(LDFLAGS) $^ $(LDLIBS)  -o $@ 
 	
-$(DIR_OBJ)/%.o: %.cc
+$(DIR_OBJ)/%.o: %.cc 
+	@echo "aaaaaaaaaaaaaaaaaaaaaaaa"
+	@echo $(OBJECTS)
 	@echo Compiling [$@]
 	@mkdir -p $(DIR_OBJ)
 	@eval $(CXX) -c $(INCLUDES) $(CPPFLAGS)  $< -o $@
