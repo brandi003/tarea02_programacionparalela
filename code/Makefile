@@ -8,7 +8,7 @@ CXX = g++
 #
 DIR_OBJ=objs
 SOURCES=$(wildcard *.cc)
-OBJECTS=src/$(patsubst %.cc,$(DIR_OBJ)/%.o,$(SOURCES))
+OBJECTS=$(patsubst %.cc,$(DIR_OBJ)/%.o,$(SOURCES))
 
 INTRINSICS=-msse2 -mavx -msse
 
