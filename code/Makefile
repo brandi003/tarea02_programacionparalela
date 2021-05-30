@@ -16,9 +16,10 @@ INCLUDES =-I. -I./include
 CPPFLAGS =-std=c++17  -Wno-deprecated $(INTRINSICS) 
 LDFLAGS =-L/usr/local/lib 
 LDLIBS = -lm -lpthread 
-echo $(TARGET)
+
 
 all: $(TARGET)
+	echo $(TARGET)
 	@echo Made [ $? ] OK :\)
 	
 $(TARGET): $(OBJECTS) 
