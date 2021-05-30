@@ -23,7 +23,7 @@ all: $(TARGET)
 	
 $(TARGET): $(OBJECTS) 
 	@echo "aaaaaaaaaaaaaaaaaaaaaaaa"
-	@echo $(TARGET)
+	@echo $(OBJECTS)
 	@echo Linking [$@]
 	@eval $(CXX) $(LDFLAGS) $^ $(LDLIBS)  -o $@ 
 	
