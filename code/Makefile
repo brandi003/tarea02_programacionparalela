@@ -39,7 +39,6 @@ clean:
 	@$(RM) -f .dummy $(OBJECTS)
 
 distclean:
-	@echo "aaaaaaaaaaaaaaaaaaaaaaaa"
 	@$(RM) $(TARGET)
 	@$(RM) -rf $(DIR_OBJ)
 
